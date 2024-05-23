@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Konta</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Questrial&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/category.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <!-- ================ icon web================= -->
+    <meta name="theme-color" content="#f01737" />
+  </head>
+  <body>
+    <header>
+      <div class="page-contain">
+        <div class="site-nav">
+          <div class="header-sale">
+            <a href="#">
+              <p>
+                ENJOY DEALS AS LOW AS ₱299 - <b><u>SHOP NOW!</u></b>
+              </p>
+            </a>
+          </div>
+          <div class="header-main">
+            <div class="menu">
+              <input type="checkbox" class="menu_input" id="check" />
+              <label for="check">
+                <ion-icon name="menu" class="site-nav__link"></ion-icon>
+              </label>
+              <div class="menu-side-bar">
+                <div class="draw-title">
+                  <div class="logo-wrap">
+                    
+                  </div>
+                  <div class="page-name">
+                    <p class="page-name-content">KONTA</p>
+                  </div>
+                  <div class="draw-title-close">
+                    <label for="check">
+                      <ion-icon
+                        name="close-outline"
+                        class="site-nav__link_close"
+                      ></ion-icon>
+                    </label>
+                  </div>
+                </div>
+                <div class="drawer__scrollable">
+                  <ul class="mobile-nav men">
+                    <li class="mobile-nav__item">
+                      <a
+                        href="./dashboard.html"
+                        class="mobile-nav__link"
+                        >Dashboard</a
+                      >
+                    </li>
+                    <li class="mobile-nav__item">
+                      <a href="./category.html" class="mobile-nav__link">Category</a>
+                    </li>
+                    <li class="mobile-nav__item">
+                      <a href="./product.html" class="mobile-nav__link">List product</a>
+                    </li>
+                    <li class="mobile-nav__item">
+                      <a href="./user.html" class="mobile-nav__link">User</a>
+                    </li>
+                    <!-- <li class="mobile-nav__item"><a href="#" class="mobile-nav__link">SHOP BY COLLECTION</a></li> -->
+                    <li class="mobile-nav__item">
+                      <div
+                        class="mobile-nav__has-sublist"
+                        onclick="dropDownList()"
+                      >
+                        <button type="button" class="mobile-nav__link--button">
+                          <span class="mobile-nav__faux-link"
+                            >Report</span
+                          >
+                          <div class="mobile-nav__toggle">
+                            <span class="collapsible-trigger__icon">
+                              <svg
+                                aria-hidden="true"
+                                focusable="false"
+                                role="presentation"
+                                class="icon icon--wide icon-chevron-down"
+                                viewBox="0 0 28 16"
+                              >
+                                <path
+                                  d="M1.57 1.59l12.76 12.77L27.1 1.59"
+                                  stroke-width="2"
+                                  stroke="#000"
+                                  fill="none"
+                                  fill-rule="evenodd"
+                                ></path>
+                              </svg>
+                            </span>
+                          </div>
+                        </button>
+                      </div>
+                      <div
+                        id="Linklist-1"
+                        class="mobile-nav__sublist collapsible-content collapsible-content--all is-open"
+                      >
+                        <div class="collapsible-content__inner">
+                          <ul class="mobile-nav__sublist_member">
+                            <li class="mobile-nav__item">
+                              <div class="mobile-nav__child-item">
+                                <a href="#" class="mobile-nav__link"
+                                  >Daily Report</a
+                                >
+                              </div>
+                            </li>
+                            <li class="mobile-nav__item">
+                              <div class="mobile-nav__child-item">
+                                <a href="#" class="mobile-nav__link"
+                                  >Weekly Report</a
+                                >
+                              </div>
+                            </li>
+                            <li class="mobile-nav__item">
+                              <div class="mobile-nav__child-item">
+                                <a href="#" class="mobile-nav__link"
+                                  >Yearly Report</a
+                                >
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="mobile-nav__item">
+                      <a
+                        href="#"
+                        class="mobile-nav__link"
+                        style="color: #f01737; font-weight: 800"
+                        >account pages</a
+                      >
+                    </li>
+                    <li class="mobile-nav__item">
+                      <a href="#" class="mobile-nav__link">Profile</a>
+                    </li>
+                    <li class="mobile-nav__item">
+                      <a href="#" class="mobile-nav__link">Sign In</a>
+                    </li>
+                    <li class="mobile-nav__item">
+                      <a href="#" class="mobile-nav__link">Sign Up</a>
+                    </li>
+                    <li class="mobile-nav__item">
+                      <a href="#" class="mobile-nav__link">Settings</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="name-shop">
+              <a href="#"><b>KONTA</b></a>
+            </div>
+            <div class="header-funtion">
+              <div class="site-nav__link">
+                <a id="profile" onclick="profileChange()"><ion-icon name="person-circle-outline"></ion-icon></a>
+                <a href="#"><ion-icon name="heart-outline"></ion-icon></a>
+                <a href="#"><ion-icon name="bag-handle-outline"></ion-icon></a>
+                <a href="../../login.html"><ion-icon name="log-out-outline"></ion-icon></a>
+              </div>
+            </div>
+          </div>
+          <hr />
+        </div>
+      </div>
+    </header>
+    <body>
+      <div class="main-content">
+        <div class="form-add-el hidden" id="form-add">
+          <section id="form-add-el">
+            <form action="" class="form-product" onsubmit="submitForm(event)">
+              <p class="form-product-header">Create Category</p>
+              <div class="product-input">
+                <label for="" class="label-product">Name: </label>
+                <input type="text" id="name" name="name">
+              </div>    
+              <div style="display: flex; justify-content: center; gap: 12px">
+                <button type="button" onclick="closeForm()" class="btn">Cancel</button>
+                <button type="submit" id="submit-form" class="btn">Submit</button>
+                <button type="button" id="update-form" class="btn hidden" onclick="updateProduct(event)">Update</button>
+              </div>
+            </form>
+          </section>
+        </div>
+        <div class="main-header">
+          <div class="table-filter">
+            <span style="font-weight: var(--typeHeaderWeight);">Select: </span>
+                <select name="category" onchange="changeCategory(event)">
+                  <option value="All">Everything</option>
+                </select>
+          </div>
+          <div class="table-name">
+            <p class="table-name-content">Category</p>
+          </div>
+          <div class="table-search">
+            <form action="" class="search-form">
+              <div class="search_input_wrap">
+                <input
+                  type="search"
+                  name=""
+                  id="search"
+                  placeholder="Search here..."
+                  onchange="changeTextSearch(event)"
+                />
+                <p class="search-clear" onclick="clearSearch()">CLEAR</p>
+              </div>
+              <button onclick="changeTextSearch(event)" class="btn btn-search">Search</button>
+            </form>
+          </div>
+        </div>
+        <div class="main-table">
+          <section id="table" class="main-table-content">
+            <table>
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Name</th>
+                  <th>Status</th> 
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="tbody"></tbody>
+            </table>
+          </section>
+          <section
+            id="pagination"
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: end;
+              gap: 24px;
+            "
+          >
+            <div>
+              <select name="" id="" onchange="changePageSize(event)">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+              </select>
+            </div>
+            <div
+              style="display: flex; justify-content: end; align-items: center; gap:16px;"
+            >
+              <button onclick="changePage(-1)" class="btn">Previous</button>
+              <p id="page-list"></p>
+              <button onclick="changePage(1)" class="btn">Next</button>
+            </div>
+          </section>
+        </div>
+        <div class="footer-table">
+          <button onclick="openForm()" class="btn-add btn">Add</button>
+        </div>
+      </div>
+    </body>
+
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="../js/category.js"></script>
+  </body>
+</html>
