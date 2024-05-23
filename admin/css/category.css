@@ -155,7 +155,7 @@
     font-size: var(--typeHeaderSize);
   }
   .logo-wrap{
-    background-image: url("../../image/Logo/main-logo.jpg");
+    background-image: url("../../Public/image/Logo/main-logo.jpg");
     height: 48px;
     width: 48px;
     /* background-position: center; */

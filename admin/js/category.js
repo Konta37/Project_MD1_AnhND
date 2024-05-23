@@ -161,7 +161,7 @@ function dropDownList() {
     // textSearch = e.target.value.toLowerCase();
     currentPage = 1;
     const products = JSON.parse(localStorage.getItem(PRODUCTS));
-    const categoryFilter = products.filter(item => item.productType.toLowerCase().includes(textSearch));
+    const categoryFilter = products.filter(item => item.name.toLowerCase().includes(textSearch));
   
     render(categoryFilter)
     
