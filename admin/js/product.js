@@ -115,6 +115,7 @@ function renderProducts(products) {
                         <button onClick="changeStatus(${i})">${
       products[i].status ? "OutStock" : "InStock"
     }</button>
+                        <button onClick="deletePrd('${products[i].id}')">Delete</button>
                     </td>
                 </tr>
             `;
@@ -295,10 +296,11 @@ function initUpdate(id){
   let realProducts = JSON.parse(localStorage.getItem(PRODUCTS)) || [];
   // realProducts.findIndex(+id)
   // realProducts.id.findIndex(id)
-  let index = getIndexById(id)
+  let index = getIndexById(id);
 
   // prdId.value = realProducts[index].id;
   prdName.value = realProducts[index].name;
+  prdGender.value = realProducts[index].gender
   prdType.value = realProducts[index].productRealName;
   prdSize.value = realProducts[index].productSize;
   prdColor.value = realProducts[index].productColor;
@@ -325,7 +327,7 @@ function getDataForm(){
     name: prdName.value,
     code: prdCode.value,
     gender: prdGender.value,
-    type: prdType.value,
+    realname: prdType.value,
     size: prdSize.value,
     color: prdColor.value,
     quantity: quantity.value,
@@ -349,12 +351,18 @@ function clearForm(){
 function updateProduct(e){
   let realProducts = JSON.parse(localStorage.getItem(PRODUCTS));
   const product = getDataForm();
-  console.log(product)
+  console.log(product);
   let indexUpdate = realProducts.findIndex(item=>item.id ==idUpdate);
   console.log(indexUpdate);
   // debugger;
-
-  realProducts[indexUpdate].name = product.name;
+  realProducts[indexUpdate].productCode = product.code;
+  realProducts[indexUpdate].gender = product.gender;
+  realProducts[indexUpdate].productRealName = product.realname;
+  realProducts[indexUpdate].productSize = product.size;
+  realProducts[indexUpdate].productColor = product.color;
+  realProducts[indexUpdate].quantity = product.quantity;
+  realProducts[indexUpdate].description = product.description;
+  realProducts[indexUpdate].price = +product.price;
   realProducts[indexUpdate].image = product.image;
   console.log(product.name);
   console.log(realProducts[indexUpdate]);
@@ -394,3 +402,13 @@ function renderCategoryAdd(){
   selectCategoryAdd.innerHTML = stringHTML;
 }
 renderCategoryAdd();
+
+//delete
+function deletePrd(id){
+  let realProducts = JSON.parse(localStorage.getItem(PRODUCTS));
+
+  let index = getIndexById(id);
+  realProducts.splice(index,1);
+  localStorage.setItem(PRODUCTS, JSON.stringify(realProducts));
+  render();
+}
