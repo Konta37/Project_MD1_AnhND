@@ -88,11 +88,11 @@ function dropDownList() {
                   <tr>
                       <td>${products[i].id}</td>
                       <td>${products[i].name}</td>
-                      <td>${products[i].status ? "InStock" : "OutStock"}</td>
+                      <td>${products[i].status ? "Available" : "Disable"}</td>
                       <td>
                           <button onClick="initUpdate('${products[i].id}')">Edit</button>
                           <button onClick="changeStatus(${i})">${
-        products[i].status ? "OutStock" : "InStock"
+        products[i].status ? "Disable" : "Available"
       }</button>
                       </td>
                   </tr>

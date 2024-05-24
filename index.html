@@ -70,13 +70,13 @@
                   <div class="accountmenu__container">
                     <p class="accountmenu__heading">Shopping is now made easier, try shop online and pick up in-store!</p>
                     <div class="accountmenu__buttons">
-                      <button class="accountmenu">REGISTER NOW</button>
-                      <button class="accountmenu">LOG IN</button>
+                      <button class="accountmenu" onclick="window.location.href = `./user/pages/register.html`">REGISTER NOW</button>
+                      <button class="accountmenu" onclick="window.location.href = `./login.html`">LOG IN</button>
                     </div>
                     <hr>
                   </div>
                   <ul class="mobile-nav men">
-                    <li class="mobile-nav__item"><a href="./Link_Product/Collections/men-new-arrivals.html" class="mobile-nav__link">NEW ARRIVALS</a></li>
+                    <li class="mobile-nav__item"><a href="./user/pages/men-new-arrivals.html" class="mobile-nav__link">NEW ARRIVALS</a></li>
                     <li class="mobile-nav__item"><a href="#" class="mobile-nav__link">BEST SELLERS</a></li>
                     <!-- <li class="mobile-nav__item"><a href="#" class="mobile-nav__link">SHOP BY COLLECTION</a></li> -->
                     <li class="mobile-nav__item">
@@ -509,7 +509,7 @@
               </div>  
             </div>
             <div class="bottom-list one-quarter">
-              <a href="#" class="site-nav__link site-nav__link--icon">
+              <a class="site-nav__link site-nav__link--icon" onclick="profileChange()">
                 <ion-icon name="person-circle-outline"></ion-icon>
               </a>
             </div>
@@ -527,7 +527,7 @@
             </div>
             <div class="bottom-list one-quarter">
               <span class="cart-link">
-                <a href="#" class="site-nav__link site-nav__link--icon site-nav__link site-nav__link--icon">
+                <a href="./user/pages/cart.html" class="site-nav__link site-nav__link--icon site-nav__link site-nav__link--icon">
                   <ion-icon name="bag-handle-outline"></ion-icon>
                   <span class="cart-link__bubble cart-link__bubble--visible"></span>
                 </a>

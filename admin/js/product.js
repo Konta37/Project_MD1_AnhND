@@ -9,8 +9,6 @@ function dropDownList() {
 // btnCancel.onclick = function(){
 //   window.location = `./login.html`
 // }
-const toastifyHTML = document.getElementById(`toastify`);
-const toastifyMessageHTML = document.getElementById(`toastify-message`);
 const formAddMainHTML = document.getElementById(`form-add`);
 const imgProducthiddenHTML = document.getElementById(`image-product`);
 const imageProductHTML = document.getElementById(`image-product`);
@@ -23,6 +21,10 @@ const searchEnter = document.getElementById(`search`);
 let imageBase64 = null;
 const PRODUCTS = "products_03";
 
+let selectCategory = document.getElementById("category");
+let selectCategoryAdd = document.getElementById("nameAdd");
+let CATEGORYS = "categorys";
+
 let pageSize = 5;
 let totalPage = 1;
 let currentPage = 1;
@@ -33,6 +35,7 @@ let categoryFilter = "All";
 let action = "create";
 
 let idUpdate = null;
+let cfError = document.querySelectorAll(".cf-error");
 
 //Call element from form
 // const prdId = document.getElementById('id')
@@ -50,11 +53,12 @@ function openForm() {
   buttonSubmitForm.classList.remove('hidden');
   buttonUpdateForm.classList.add('hidden');
   imgProducthiddenHTML.classList.add('hidden');
-
+  selectCategoryAdd.classList.remove("select-disabled");
   clearForm();
 }
 function closeForm() {
   formAddMainHTML.classList.add(`hidden`);
+  selectCategoryAdd.classList.remove("select-disabled");
   clearForm();
 }
 function clearSearch() {
@@ -72,10 +76,11 @@ function render() {
   //lọc theo category
   if (categoryFilter !== "All") {
     realProducts = realProducts.filter(
-      (product) => product.gender === categoryFilter
+      (product) => product.name === categoryFilter
     );
     // console.log(realProducts);
   }
+  console.log(categoryFilter);
   //lọc theo search (vdu search sam thi hien spham samsung)
   realProducts = realProducts.filter((product) =>
     product.name.toLowerCase().includes(textSearch)
@@ -93,8 +98,13 @@ function renderProducts(products) {
   if (end > products.length) {
     end = products.length;
   }
+  const categorys = JSON.parse(localStorage.getItem(CATEGORYS)) ||[];
   for (let i = start; i < end; i++) {
-    stringHTML += `
+    //check status disable or available in category to show product
+    let indexCategory = categorys.findIndex(item=> item.id == products[i].idCategory);
+    if(indexCategory!==-1){
+      products[i].name = categorys[indexCategory].name;
+      stringHTML += `
                 <tr>
                     <td>${products[i].id}</td>
                     <td>${products[i].productCode}</td>
@@ -119,6 +129,8 @@ function renderProducts(products) {
                     </td>
                 </tr>
             `;
+    }
+
   }
   tbodyHTML.innerHTML = stringHTML;
 }
@@ -222,6 +234,11 @@ function submitForm(e) {
       id = products[products.length - 1].id + 1;
     }
     values.id = id;
+    //take id form categorys
+    const categorys = JSON.parse(localStorage.getItem(CATEGORYS)) ||[];
+    let indexCate = categorys.findIndex(item =>item.name ==values.name);
+    values.idCategory = categorys[indexCate].id;
+
     values.status = true;
     products.push(values);
     localStorage.setItem(PRODUCTS, JSON.stringify(products));
@@ -255,39 +272,37 @@ function convertToBase64() {
   //kết thúc đọc file
   imgProducthiddenHTML.classList.remove(`hidden`);
 }
-function showToast(message) {
-  toastifyHTML.classList.toggle(`hidden`);
-  toastifyMessageHTML.innerHTML = message;
-  const idTimeout = setTimeout(function () {
-    toastifyHTML.classList.toggle(`hidden`);
-    toastifyMessageHTML.innerHTML = "";
-    clearTimeout(idTimeout);
-  }, 2000);
-}
 //funtion check điều kiện
 function validateFields(product) {
-  // let check = true;
-  // if (product.name.length < 4) {
-  //   showToast("Name length < 4");
-  //   return false;
-  // }
-  // if (product.price <= 0) {
-  //   showToast("Price <= 0");
-  //   return false;
-  // }
-  // if (product.quantity <= 0) {
-  //   showToast("Quantity <=0");
-  //   return false;
-  // }
-  // if (product.description.length <= 10) {
-  //   showToast("Description <= 10");
-  //   return false;
-  // }
-  // if (!product.image) {
-  //   showToast("dont have img");
-  //   return false;
-  // }
-  return check;
+  let realProducts = JSON.parse(localStorage.getItem(PRODUCTS)) || [];
+  let check = true;
+  let flagCode,flagRealName = true;
+  let errorMessage = "";
+
+  let indexCheck = realProducts.findIndex(item=>item.productCode==product.productCode);
+
+  if (product.productCode.length < 1) {
+    errorMessage = `Must not be blank`;
+    cfError[0].innerHTML = errorMessage;
+    flagCode= false;
+  }else if(indexCheck !==-1){
+    errorMessage = `Must not be duplicate`;
+    cfError[0].innerHTML = errorMessage;
+    flagCode= false;
+  }else{
+    flagCode= true;
+  }
+  if (product.productRealName.length < 1) {
+    errorMessage = `Must not be blank`;
+    cfError[1].innerHTML = errorMessage;
+    flagRealName= false;
+  }else{
+    flagRealName= true;
+  }
+  if (flagCode == true && flagRealName ==true){
+    return check;
+  }else{
+  }
 }
 
 //Funtion update
@@ -298,8 +313,12 @@ function initUpdate(id){
   // realProducts.id.findIndex(id)
   let index = getIndexById(id);
 
+  selectCategoryAdd.classList.add("select-disabled");
+  const categorys = JSON.parse(localStorage.getItem(CATEGORYS)) ||[];
+  let indexCategory = categorys.findIndex(item=> item.id == realProducts[index].idCategory);
+
   // prdId.value = realProducts[index].id;
-  prdName.value = realProducts[index].name;
+  prdName.value = categorys[indexCategory].name;
   prdGender.value = realProducts[index].gender
   prdType.value = realProducts[index].productRealName;
   prdSize.value = realProducts[index].productSize;
@@ -346,7 +365,10 @@ function clearForm(){
   price.value="";
   description.value="";
   prdSize.value="XS";
-  imageProductHTML.src=""
+  imageProductHTML.src="";
+  for (let i in cfError){
+    cfError[i].innerHTML="";
+  }
 }
 function updateProduct(e){
   let realProducts = JSON.parse(localStorage.getItem(PRODUCTS));
@@ -355,6 +377,8 @@ function updateProduct(e){
   let indexUpdate = realProducts.findIndex(item=>item.id ==idUpdate);
   console.log(indexUpdate);
   // debugger;
+  //doesnt have name of category bc category name of product cant change
+  // realProducts[indexUpdate].name = product.name;
   realProducts[indexUpdate].productCode = product.code;
   realProducts[indexUpdate].gender = product.gender;
   realProducts[indexUpdate].productRealName = product.realname;
@@ -372,17 +396,13 @@ function updateProduct(e){
   return;
 }
 
-let selectCategory = document.getElementById("category");
-let selectCategoryAdd = document.getElementById("nameAdd");
-let CATEGORYS = "categorys";
-
 function renderCategory(){
   const categorys = JSON.parse(localStorage.getItem(CATEGORYS)) ||[];
   let stringHTML =`<option value="All">Everything</option>`;
   for (let i = 0; i < categorys.length; i++) {
     if (categorys[i].status) {
       stringHTML += `
-      <option value="${categorys[i].id}">${categorys[i].name}</option>
+      <option value="${categorys[i].name}">${categorys[i].name}</option>
       `
     }
   }
@@ -408,7 +428,43 @@ function deletePrd(id){
   let realProducts = JSON.parse(localStorage.getItem(PRODUCTS));
 
   let index = getIndexById(id);
-  realProducts.splice(index,1);
-  localStorage.setItem(PRODUCTS, JSON.stringify(realProducts));
-  render();
+
+  const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      confirmButton: "btn btn-success",
+      cancelButton: "btn btn-danger"
+    },
+    buttonsStyling: false
+  });
+  swalWithBootstrapButtons.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Yes, delete it!",
+    cancelButtonText: "No, cancel!",
+    reverseButtons: true
+  }).then((result) => {
+    if (result.isConfirmed) {
+      //Find index to 
+      realProducts.splice(index,1);
+      localStorage.setItem(PRODUCTS, JSON.stringify(realProducts));
+      render();
+
+      swalWithBootstrapButtons.fire({
+        title: "Deleted!",
+        text: "Your file has been deleted.",
+        icon: "success"
+      });
+    } else if (
+      /* Read more about handling dismissals below */
+      result.dismiss === Swal.DismissReason.cancel
+    ) {
+      swalWithBootstrapButtons.fire({
+        title: "Cancelled",
+        text: "Your imaginary file is safe :)",
+        icon: "error"
+      });
+    }
+  });
 }

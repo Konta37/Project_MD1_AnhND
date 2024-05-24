@@ -75,9 +75,10 @@ btnMenu.onclick = function openMenu(){
 
 }
 
-let profile = document.getElementById("profile");
+// let profile = document.getElementById("profile");
 
 function profileChange(){
+  console.log("da vao");
   let userLogin = JSON.parse(localStorage.getItem("user_login")) ||[];
   if (!userLogin) {
     window.location.href ="./login.html";
