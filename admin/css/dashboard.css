@@ -400,38 +400,6 @@
   
   /* ========================================Main content=======================*/
   
-  input,
-  button,
-  textarea,
-  option,
-  select {
-      outline: none;
-      padding: 5px 10px;
-  }
-  
-  textarea {
-      resize: none;
-  }
-  
-  button {
-      cursor: pointer;
-  }
-  
-  .form-add-el {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      display: flex;
-      justify-content: center;
-      padding-top: 48px;
-      height: 100vh;
-      background-color: none;
-      background-color: #c7bebeaf;
-      z-index: 2;
-      overflow: scroll;
-  }
-  
   .hidden {
       display: none !important;
   }
@@ -503,8 +471,9 @@
   .main-header{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     padding: 24px 86px;
+
   }
   .table-name-content{
     font-weight: var(--typeHeaderWeight);
@@ -514,85 +483,6 @@
     -webkit-font-smoothing: antialiased;
     -webkit-text-size-adjust: 100%;
     text-rendering: optimizeSpeed;
-  }
-  .table-search {
-    height: 40px;
-    width: 320px;
-    font-size: 24px;
-  }
-  .form-product-header{
-    text-align: center;
-    font-weight: var(--typeHeaderWeight);
-    font-size: var(--typeHeaderSize);
-
-  }
-  .product-input{
-    display: grid;
-    grid-template-columns: auto 480px;
-    margin-bottom: 8px;
-  }
-  .product-input input, .product-input select, .scope-input textarea{
-    width: 100%;
-  }
-  .search-form {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    background-color: #f0f0f0;
-    border-radius: 0;
-  }
-  .btn-search{
-    margin-left: 8px;
-  }
-  .search_input_wrap {
-    width:  80%;
-    height: 100%;
-    display: flex;
-    position: relative;
-  }
-  .search_input_wrap input {
-    width: 100%;
-    border: none;
-    background-color: #f0f0f0;
-    padding: 0 10px;
-  }
-  /* clears the ‘X’ from Chrome */
-  input[type="search"]::-webkit-search-decoration,
-  input[type="search"]::-webkit-search-cancel-button,
-  input[type="search"]::-webkit-search-results-button,
-  input[type="search"]::-webkit-search-results-decoration { display: none; }
-  .search-clear {
-    position: absolute;
-    top: 0.8rem;
-    right: 1rem;
-    color: black;
-    font-size: 10px;
-    cursor: pointer;
-  }
-  .main-table-content td{
-    padding-left: 8px;
-  }
-  .footer-table{
-    display: flex;
-    padding: 16px 86px;
-    justify-content: right;
-  }
-  .btn-add{
-    background-color: #f01737 !important;
-    color: #ffffff;
-  }
-  .btn{
-    font-family: var(--typeHeaderPrimary), var(--typeHeaderFallback);
-    font-weight: var(--typeHeaderWeight);
-    letter-spacing: var(--typeHeaderSpacing);
-    line-height: var(--typeHeaderLineHeight);
-    font-size: calc(var(--typeBaseSize) * 1.2);
-    padding: 11px 20px;
-    width: 160px;
-    height: 40px;
-    border: none;
-    color: #ffffff;
-    background-color: #000000;
   }
   :root {
     --typeHeaderPrimary: Montserrat;
