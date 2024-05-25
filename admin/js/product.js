@@ -80,7 +80,6 @@ function render() {
     );
     // console.log(realProducts);
   }
-  console.log(categoryFilter);
   //lọc theo search (vdu search sam thi hien spham samsung)
   realProducts = realProducts.filter((product) =>
     product.name.toLowerCase().includes(textSearch)
@@ -355,7 +354,7 @@ function initUpdate(id){
   price.value = realProducts[index].price;
   quantity.value = realProducts[index].quantity;
   description.value = realProducts[index].description;
-  imageProductHTML.src = realProducts[index].image;
+  imageProductHTML.src = realProducts[index].image[0];
   imageProductHTML.classList.remove('hidden');
   formAddMainHTML.classList.remove(`hidden`);
   buttonUpdateForm.classList.remove(`hidden`);
