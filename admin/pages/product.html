@@ -250,7 +250,7 @@
                   rows="5"
                 ></textarea>
               </div>
-              <div class="scope-input">
+              <!-- <div class="scope-input">
                 <label for="input-image" class="label-product pointer"
                   >Image:
                 </label>
@@ -261,6 +261,17 @@
                   onchange="convertToBase64()"
                 />
                 <img id="image-product" width="100px" src="" alt="img" class="hidden"/>
+              </div> -->
+              <div class="scope-input">
+                <label for="input-image" class="label-product pointer">Image:</label>
+                <input
+                  id="input-image"
+                  type="file"
+                  accept="image/*"
+                  onchange="convertToBase64()"
+                  multiple
+                />
+                <div id="image-product"></div>
               </div>
               <div style="display: flex; justify-content: center; gap: 12px">
                 <button type="button" onclick="closeForm()" class="btn">Cancel</button>

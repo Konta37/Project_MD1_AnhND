@@ -484,6 +484,16 @@
     -webkit-text-size-adjust: 100%;
     text-rendering: optimizeSpeed;
   }
+  .middle-header{
+    text-align: center;
+    background-color: #272727;
+    margin: 86px;
+    border-radius: 20px;
+  }
+  .middle-header h1{
+    padding: 24px 0;
+    color: #ffffff;
+  }
   :root {
     --typeHeaderPrimary: Montserrat;
     --typeHeaderFallback: sans-serif;

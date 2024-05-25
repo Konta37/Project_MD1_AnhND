@@ -10,7 +10,6 @@ function dropDownList() {
 //   window.location = `./login.html`
 // }
 const formAddMainHTML = document.getElementById(`form-add`);
-const imgProducthiddenHTML = document.getElementById(`image-product`);
 const imageProductHTML = document.getElementById(`image-product`);
 const pageList = document.getElementById(`page-list`);
 const tbodyHTML = document.getElementById(`tbody`);
@@ -19,6 +18,7 @@ const buttonUpdateForm = document.getElementById(`update-form`);
 const searchEnter = document.getElementById(`search`);
 
 let imageBase64 = null;
+let imageBase64Arr =[];
 const PRODUCTS = "products_03";
 
 let selectCategory = document.getElementById("category");
@@ -52,7 +52,7 @@ function openForm() {
   formAddMainHTML.classList.remove(`hidden`);
   buttonSubmitForm.classList.remove('hidden');
   buttonUpdateForm.classList.add('hidden');
-  imgProducthiddenHTML.classList.add('hidden');
+  imageProductHTML.classList.add('hidden');
   selectCategoryAdd.classList.remove("select-disabled");
   clearForm();
 }
@@ -109,7 +109,7 @@ function renderProducts(products) {
                     <td>${products[i].id}</td>
                     <td>${products[i].productCode}</td>
                     <td>
-                        <img width="52px" src="${products[i].image}" alt="img">
+                        <img width="52px" src="${products[i].image[0]}" alt="img">
                     </td>
                     <td>${products[i].name}</td>
                     <td>${products[i].gender}</td>
@@ -221,7 +221,7 @@ function submitForm(e) {
   values.price = +values.price;
   values.quantity = +values.quantity;
 
-  values.image = imageBase64;
+  values.image = imageBase64Arr;
 
   
 
@@ -240,11 +240,15 @@ function submitForm(e) {
     values.idCategory = categorys[indexCate].id;
 
     values.status = true;
+    values.stars = "";
+    values.comments ="";
+
     products.push(values);
     localStorage.setItem(PRODUCTS, JSON.stringify(products));
     e.target.reset();
     imageProductHTML.src = "";
     imageBase64 = null;
+    imageBase64Arr=[];
     closeForm();
 
     //sdung render lọc các sản phẩm để hiện lên màn hình
@@ -252,25 +256,49 @@ function submitForm(e) {
   }
 }
 
-//đưa ảnh vào form
+// //đưa ảnh vào form
+// function convertToBase64() {
+//   //khởi tạo biến lấy id inputimage
+//   const fileInput = document.getElementById(`input-image`);
+//   //trường hợp có nhiều ảnh thì lấy ảnh đầu tiên
+//   //Muốn có chọn nhiều ảnh thì thêm multi ở bên input image
+//   const file = fileInput.files[0];
+
+//   //đọc file
+//   const reader = new FileReader();
+//   reader.onload = function (event) {
+//     const base64 = event.target.result;
+//     imageBase64 = base64;
+//     imageProductHTML.src = imageBase64;
+//   };
+
+//   reader.readAsDataURL(file);
+//   //kết thúc đọc file
+//   imageProductHTML.classList.remove(`hidden`);
+// }
+
 function convertToBase64() {
-  //khởi tạo biến lấy id inputimage
-  const fileInput = document.getElementById(`input-image`);
-  //trường hợp có nhiều ảnh thì lấy ảnh đầu tiên
-  //Muốn có chọn nhiều ảnh thì thêm multi ở bên input image
-  const file = fileInput.files[0];
+  const fileInput = document.getElementById("input-image");
+  const previewContainer = document.getElementById("image-product");
+  previewContainer.innerHTML = ""; // Clear previous previews
 
-  //đọc file
-  const reader = new FileReader();
-  reader.onload = function (event) {
-    const base64 = event.target.result;
-    imageBase64 = base64;
-    imageProductHTML.src = imageBase64;
-  };
+  for (const file of fileInput.files) {
+    const reader = new FileReader();
+    reader.onload = function (event) {
+      const img = document.createElement("img");
+      img.src = event.target.result;
+      img.width = 100; // Set width of image preview
+      img.classList.add("preview-img");
+      previewContainer.appendChild(img);
+      imageBase64 = img.src;
+      imageBase64Arr.push(imageBase64);
+    };
 
-  reader.readAsDataURL(file);
-  //kết thúc đọc file
-  imgProducthiddenHTML.classList.remove(`hidden`);
+    reader.readAsDataURL(file);
+  }
+  console.log(imageBase64Arr);
+
+  previewContainer.classList.remove("hidden"); // Show the preview container
 }
 //funtion check điều kiện
 function validateFields(product) {
@@ -352,7 +380,7 @@ function getDataForm(){
     quantity: quantity.value,
     price: price.value,
     description: description.value,
-    image: imgProducthiddenHTML.src,
+    image: imageProductHTML.src,
   };
 }
 function clearForm(){

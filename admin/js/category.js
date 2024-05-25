@@ -169,10 +169,46 @@ function dropDownList() {
   
   //chuyển trạng thái status
   function changeStatus(i) {
-    const products = JSON.parse(localStorage.getItem(PRODUCTS));
-    products[i].status = !products[i].status;
-    localStorage.setItem(PRODUCTS, JSON.stringify(products));
-    render();
+
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: "btn btn-success",
+        cancelButton: "btn btn-danger"
+      },
+      buttonsStyling: false
+    });
+    swalWithBootstrapButtons.fire({
+      title: "Are you sure?",
+      text: "It will change status of products.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, do it!",
+      cancelButtonText: "No, cancel!",
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        //Find index to 
+        const products = JSON.parse(localStorage.getItem(PRODUCTS));
+        products[i].status = !products[i].status;
+        localStorage.setItem(PRODUCTS, JSON.stringify(products));
+        render();
+  
+        swalWithBootstrapButtons.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success"
+        });
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire({
+          title: "Cancelled",
+          text: "Your imaginary file is safe :)",
+          icon: "error"
+        });
+      }
+    });
   }
   
   function submitForm(e) {
