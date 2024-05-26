@@ -16,7 +16,7 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Questrial&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./css/index.css" />
+    <link rel="stylesheet" href="../css/all-product.css" />
 
     <link
       rel="stylesheet"
@@ -472,9 +472,9 @@
                       </div>
                     </li>
                     <li class="mobile-nav__item"><a href="#" class="mobile-nav__link" style="color: #f01737; font-weight: 800;">SALE</a></li>
-                    <li class="mobile-nav__item"><a href="./user/pages/all-product.html" class="mobile-nav__link">ALL ITEMS</a></li>
+                    <li class="mobile-nav__item"><a href="#" class="mobile-nav__link">ALL ITEMS</a></li>
                     <li class="mobile-nav__item"><a href="#" class="mobile-nav__link">BULK ORDER</a></li>
-                    <li class="mobile-nav__item"><a href="./login.html" class="mobile-nav__link">LOG IN</a></li>
+                    <li class="mobile-nav__item"><a href="#" class="mobile-nav__link">LOG IN</a></li>
                   </ul>
                   <!-- <ul class="woman"></ul> -->
                   <ul class="mobile-additional__menu">
@@ -537,278 +537,256 @@
         </div> 
       </div>
     </header>
+    <!-- End header -->
+    <!-- begin section -->
     <main>
-      <!-- Swiper -->
-      <div class="slide-content-main">
-        <div class="swiper mySwiper swiper-h">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <div class="swiper mySwiper2 swiper-v">
-                <div class="swiper-wrapper">
-                  <div class="swiper-slide">
-                    <img
-                      src="./Public/image/DESKTOP_1910x835_1c131e6c-2fe3-49aa-8f97-1e033a3f367b.webp"
-                      alt="" class="img1"
-                    />
-                    <div class="btn-marvel-main">
-                      <a href="#" class="btn-marvel">SHOP NOW</a>
-                      <i class='bx bx-right-arrow-alt arrow'></i>
+        <div class="main-content" id="MainContent">
+            <div class="page-width page-content">
+                <nav class="breadcrumb">
+                    <a href="../../index.html">Home</a>
+                    <span class="breadcrumb__divider" aria-hidden="true">/</span>
+                    <a href="#">Collections</a>
+                    <span class="breadcrumb__divider" aria-hidden="true">/</span>
+                    <a href="#">All Items</a>
+                </nav>
+                <header class="section-header">
+                  <h1 class="section-header__title collection-title">
+                    All Items
+                  </h1>
+                </header>
+                <div class="collection-filter">
+                  <div class="grid grid--uniform small--grid--flush">
+                    <div class="grid__item small--one-half medium-up--one-half">
+                      <button id="FilterDrawerTrigger" type="button" class="collection-filter__item--drawer js-drawer-open-collection-filters btn btn--tertiary">
+                        <box-icon name='filter'></box-icon>
+                        <p>Filter</p>
+                      </button>
+                    </div>
+                    <div class="grid__item small--one-half medium-up--one-half text-right collection-filter__item--sort">
+                        <!-- <label for="SortBy" class="hidden-label">Sort</label> -->
+                        <select name="SortBy" id="SortBy">
+                          <option value="title-ascending" selected="selected">Sort</option>
+                          <option value="manual">Featured</option>
+                          <option value="best-selling">Best Selling</option>
+                          <option value="title-ascending">Alphabetically, A-Z</option>
+                          <option value="title-descending">Alphabetically, Z-A</option>
+                          <option value="price-ascending">Price, low to high</option>
+                          <option value="price-descending">Price, high to low</option>
+                          <option value="created-ascending">Date, old to new</option>
+                          <option value="created-descending" selected="selected">Date, new to old</option>
+                        </select>
+
                     </div>
                   </div>
-                  <div class="swiper-slide">
-                    <img
-                      src="./Public/image/DOTCOM_DESKTOP_-_1920X973_3ec71c24-b64d-4b8b-bb4c-656cef3f3661.webp"
-                      alt="" class="img2"
-                    />
-                    <div class="btn-marvel-main">
-                      <a href="#" class="btn-marvel">SHOP NOW</a>
-                      <i class='bx bx-right-arrow-alt arrow'></i>
+                </div>
+                <div class="CollectionTopResult">
+                  <div class="CollectionTopContent">
+                    <div id="product-item" class="grid grid--uniform small--grid--flush">
+                      <!-- <div class="grid__item grid-product small--one-half medium-up--one-quarter grid-product__has-quick-shop aos-init aos-animate">
+                        <div class="grid-product__content">
+                          <a href="#" class="wishlist-btn grid-wishlist-btn style_1">
+                            <div style="display: initial;" class="wishlist_btn_icon">
+                              <i class='bx bx-heart' ></i>
+                            </div>
+                          </a>
+                          <a href="#" class="grid-product__link">
+                            <div class="grid-product__image-mask">
+                              <div class="image-wrap loaded" style="height: 0; padding-bottom: 150%;">
+                                <img src="../../Public/image/Collection/Men/981378-Light_Peach_1.webp" alt="">
+                              </div>
+                            </div>
+                            <div class="grid-product__meta">
+                              <div class="grid-product__title">Spike Dynamics Regular Fit Graphic T-Shirt</div>
+                              <div class="grid-product__price">350.000đ</div>
+                              <button class="quick-product__btn js-modal-open-quick-modal-8121681051838 small--hide">
+                                <span class="quick-product__label">+ Add to cart</span>
+                              </button>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="grid__item grid-product small--one-half medium-up--one-quarter grid-product__has-quick-shop aos-init aos-animate">
+                        <div class="grid-product__content">
+                          <a href="#" class="wishlist-btn grid-wishlist-btn style_1">
+                            <div style="display: initial;" class="wishlist_btn_icon">
+                              <i class='bx bx-heart' ></i>
+                            </div>
+                          </a>
+                          <a href="#" class="grid-product__link">
+                            <div class="grid-product__image-mask">
+                              <div class="image-wrap loaded" style="height: 0; padding-bottom: 150%;">
+                                <img src="../../Public/image/Collection/Men/979616-Black_4.webp" alt="">
+                              </div>
+                            </div>
+                            <div class="grid-product__meta">
+                              <div class="grid-product__title">Varsity Cap with Embroidery Patch</div>
+                              <div class="grid-product__price">350.000đ</div>
+                              <button class="quick-product__btn js-modal-open-quick-modal-8121681051838 small--hide">
+                                <span class="quick-product__label">+ Add to cart</span>
+                              </button>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="grid__item grid-product small--one-half medium-up--one-quarter grid-product__has-quick-shop aos-init aos-animate">
+                        <div class="grid-product__content">
+                          <a href="#" class="wishlist-btn grid-wishlist-btn style_1">
+                            <div style="display: initial;" class="wishlist_btn_icon">
+                              <i class='bx bx-heart' ></i>
+                            </div>
+                          </a>
+                          <a href="#" class="grid-product__link">
+                            <div class="grid-product__image-mask">
+                              <div class="image-wrap loaded" style="height: 0; padding-bottom: 150%;">
+                                <img src="../../Public/image/Collection/Men/979618-Off_White_1.webp" alt="">
+                              </div>
+                            </div>
+                            <div class="grid-product__meta">
+                              <div class="grid-product__title">Classic Cap with Embroidered Patch</div>
+                              <div class="grid-product__price">350.000đ</div>
+                              <button class="quick-product__btn js-modal-open-quick-modal-8121681051838 small--hide">
+                                <span class="quick-product__label">+ Add to cart</span>
+                              </button>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="grid__item grid-product small--one-half medium-up--one-quarter grid-product__has-quick-shop aos-init aos-animate">
+                        <div class="grid-product__content">
+                          <a href="#" class="wishlist-btn grid-wishlist-btn style_1">
+                            <div style="display: initial;" class="wishlist_btn_icon">
+                              <i class='bx bx-heart' ></i>
+                            </div>
+                          </a>
+                          <a href="#" class="grid-product__link">
+                            <div class="grid-product__image-mask">
+                              <div class="image-wrap loaded" style="height: 0; padding-bottom: 150%;">
+                                <img src="../../Public/image/Collection/Men/979632-Seafoam_Green_3.webp" alt="">
+                              </div>
+                            </div>
+                            <div class="grid-product__meta">
+                              <div class="grid-product__title">Gradient Bucket Hat</div>
+                              <div class="grid-product__price">350.000đ</div>
+                              <button class="quick-product__btn js-modal-open-quick-modal-8121681051838 small--hide">
+                                <span class="quick-product__label">+ Add to cart</span>
+                              </button>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="grid__item grid-product small--one-half medium-up--one-quarter grid-product__has-quick-shop aos-init aos-animate">
+                        <div class="grid-product__content">
+                          <a href="#" class="wishlist-btn grid-wishlist-btn style_1">
+                            <div style="display: initial;" class="wishlist_btn_icon">
+                              <i class='bx bx-heart' ></i>
+                            </div>
+                          </a>
+                          <a href="#" class="grid-product__link">
+                            <div class="grid-product__image-mask">
+                              <div class="image-wrap loaded" style="height: 0; padding-bottom: 150%;">
+                                <img src="../../Public/image/Collection/Men/980705-Blue_1.webp" alt="">
+                              </div>
+                            </div>
+                            <div class="grid-product__meta">
+                              <div class="grid-product__title">Denim Jacket with Zipper</div>
+                              <div class="grid-product__price">350.000đ</div>
+                              <button class="quick-product__btn js-modal-open-quick-modal-8121681051838 small--hide">
+                                <span class="quick-product__label">+ Add to cart</span>
+                              </button>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="grid__item grid-product small--one-half medium-up--one-quarter grid-product__has-quick-shop aos-init aos-animate">
+                        <div class="grid-product__content">
+                          <a href="#" class="wishlist-btn grid-wishlist-btn style_1">
+                            <div style="display: initial;" class="wishlist_btn_icon">
+                              <i class='bx bx-heart' ></i>
+                            </div>
+                          </a>
+                          <a href="#" class="grid-product__link">
+                            <div class="grid-product__image-mask">
+                              <div class="image-wrap loaded" style="height: 0; padding-bottom: 150%;">
+                                <img src="../../Public/image/Collection/Men/980743-GrayGreen_5.webp" alt="">
+                              </div>
+                            </div>
+                            <div class="grid-product__meta">
+                              <div class="grid-product__title">Dress Code Dapper Fit Trousers</div>
+                              <div class="grid-product__price">350.000đ</div>
+                              <button class="quick-product__btn js-modal-open-quick-modal-8121681051838 small--hide">
+                                <span class="quick-product__label">+ Add to cart</span>
+                              </button>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="grid__item grid-product small--one-half medium-up--one-quarter grid-product__has-quick-shop aos-init aos-animate">
+                        <div class="grid-product__content">
+                          <a href="#" class="wishlist-btn grid-wishlist-btn style_1">
+                            <div style="display: initial;" class="wishlist_btn_icon">
+                              <i class='bx bx-heart' ></i>
+                            </div>
+                          </a>
+                          <a href="#" class="grid-product__link">
+                            <div class="grid-product__image-mask">
+                              <div class="image-wrap loaded" style="height: 0; padding-bottom: 150%;">
+                                <img src="../../Public/image/Collection/Men/981370-White_1.webp" alt="">
+                              </div>
+                            </div>
+                            <div class="grid-product__meta">
+                              <div class="grid-product__title">Natural Energy Regular Fit Graphic T-Shirt</div>
+                              <div class="grid-product__price">350.000đ</div>
+                              <button class="quick-product__btn js-modal-open-quick-modal-8121681051838 small--hide">
+                                <span class="quick-product__label">+ Add to cart</span>
+                              </button>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="grid__item grid-product small--one-half medium-up--one-quarter grid-product__has-quick-shop aos-init aos-animate">
+                        <div class="grid-product__content">
+                          <a href="#" class="wishlist-btn grid-wishlist-btn style_1">
+                            <div style="display: initial;" class="wishlist_btn_icon">
+                              <i class='bx bx-heart' ></i>
+                            </div>
+                          </a>
+                          <a href="#" class="grid-product__link">
+                            <div class="grid-product__image-mask">
+                              <div class="image-wrap loaded" style="height: 0; padding-bottom: 150%;">
+                                <img src="../../Public/image/Collection/Men/981371-Blush_1.webp" alt="">
+                              </div>
+                            </div>
+                            <div class="grid-product__meta">
+                              <div class="grid-product__title">Relaxed Fit Raglan T-Shirt</div>
+                              <div class="grid-product__price">350.000đ</div>
+                              <button class="quick-product__btn js-modal-open-quick-modal-8121681051838 small--hide">
+                                <span class="quick-product__label">+ Add to cart</span>
+                              </button>
+                            </div>
+                          </a>
+                        </div>
+                      </div> -->
+                      
+                      
                     </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <img
-                      src="./Public/image/PEN_EASY_IN_LINEN_LIFESTYLE-MEN_DESKTOP_e636900e-ab52-4cf4-9b03-a8df527827d3.webp"
-                      alt="" class="img3"
-                    />
-                    <div class="btn-marvel-main">
-                      <a href="#" class="btn-marvel">SHOP NOW</a>
-                      <i class='bx bx-right-arrow-alt arrow'></i>
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <img
-                      src="./Public/image/PEN_Q1_SWIM_BANNERS-MEN_DESKTOP_1d6f8df6-a116-4a46-b485-f78b62c1579e.webp"
-                      alt="" class="img4"
-                    />
-                    <div class="btn-marvel-main">
-                      <a href="#" class="btn-marvel">SHOP NOW</a>
-                      <i class='bx bx-right-arrow-alt arrow'></i>
-                    </div>
-                  </div>
-                  <div class="swiper-slide last-swiper">
-                    <div swiper-info-content>
-                      <div class="konta-sgv_row">
-                        <div class="swiper-last-name">
-                          <h2>Join the Konta Club!</h2>
-                          <h5>Perks of signing up:</h5>
-                        </div>
-                        <div class="swiper-perks">
-                          <div class="perks-items">
-                            <a href="#">
-                              <box-icon name="gift" type="solid"></box-icon>
-                              <p>WELCOME OFFER</p>
-                            </a>
-                          </div>
-                          <div class="perks-items">
-                            <a href="#">
-                              <box-icon name="discount" type="solid"></box-icon>
-                              <p>EXCLUSIVE DEALS</p>
-                            </a>
-                          </div>
-                          <div class="perks-items">
-                            <a href="#">
-                              <box-icon
-                                name="bell-ring"
-                                type="solid"
-                              ></box-icon>
-                              <p>FIRST DIBS ON NEW DROPS</p>
-                            </a>
-                          </div>
-                          <div class="perks-items">
-                            <a href="#">
-                              <box-icon name="truck" type="solid"></box-icon>
-                              <p>OREDER TRACKING</p>
-                            </a>
-                          </div>
-                          <div class="perks-items">
-                            <a href="#">
-                              <box-icon type="solid" name="cart"></box-icon>
-                              <p>FASTER CHECKOUT</p>
-                            </a>
-                          </div>
-                          <div class="perks-items">
-                            <a href="#">
-                              <box-icon
-                                type="solid"
-                                name="store-alt"
-                              ></box-icon>
-                              <p>30 DAY HASSLE-FREE EXCHANGES IN STORE</p>
-                            </a>
-                          </div>
-                        </div>
-                        <div class="swiper-sale">
-                          <a href="#"><button>GET 20% OFF*</button></a>
-                        </div>
-                        <div class="footer-custom-block">
-                          <ul class="footer-social-links">
-                            <li><a href="#">FACEBOOK</a></li>
-                            <li><a href="#">INSTAGRAM</a></li>
-                            <li><a href="#">TWITTER</a></li>
-                            <li><a href="#">TIKTOK</a></li>
-                            <li><a href="#">CONTACT</a></li>
-                          </ul>
-                        </div>
-                        <div class="footer-custom-block">
-                          <ul class="footer-policies">
-                            <li class="footer-policies-link">
-                              <a href="#">About Us</a>
-                            </li>
-                            <li class="footer-policies-link">
-                              <a href="#">FAQs</a>
-                            </li>
-                            <li class="footer-policies-link">
-                              <a href="#">Pick-up in Store</a>
-                            </li>
-                            <li class="footer-policies-link">
-                              <a href="#">Privacy Policy</a>
-                            </li>
-                            <li><a href="#">Terms of Service</a></li>
-                          </ul>
-                        </div>
+                    <div id="pagination" class="pagination">
+                      <div class="pagination-content">
+                        <button onclick="changePage(-1)" class="btn">
+                          <ion-icon name="arrow-back-outline"></ion-icon>
+                        </button>
+                        <p id="page-list" class="page"></p>
+                        <button onclick="changePage(1)" class="btn">
+                          <ion-icon name="arrow-forward-outline"></ion-icon>
+                        </button>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="swiper-pagination"></div>
-              </div>
+                <div class="space-page"></div>
             </div>
-            <div class="swiper-slide">
-              <div class="swiper mySwiper2 swiper-v">
-                <div class="swiper-wrapper">
-                  <div class="swiper-slide">
-                    <img
-                      src="./Public/image/PEN_Q1-DISNEY_DOTCOM_DESKTOP.webp"
-                      alt="" class="women-img1"
-                    />
-                    <div class="btn-marvel-main">
-                      <a href="#" class="btn-marvel">SHOP NOW</a>
-                      <i class='bx bx-right-arrow-alt arrow'></i>
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <img
-                      src="./Public/image/PEN_Q1_GYJ_DOTCOM-4_b33a4848-ad84-40da-8588-6aadcaa61426.webp"
-                      alt="" class="women-img2"
-                    />
-                    <div class="btn-marvel-main">
-                      <a href="#" class="btn-marvel">SHOP NOW</a>
-                      <i class='bx bx-right-arrow-alt arrow'></i>
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <img
-                      src="./Public/image/PEN_EASY_IN_LINEN_LIFESTYLE-WOMEN_DESKTOP_91c14ec8-63d1-4710-b8bd-05007da63530.webp"
-                      alt=""  class="women-img3"
-                    />
-                    <div class="btn-marvel-main">
-                      <a href="#" class="btn-marvel">SHOP NOW</a>
-                      <i class='bx bx-right-arrow-alt arrow'></i>
-                    </div>
-                  </div>
-                  <div class="swiper-slide">
-                    <img
-                      src="./Public/image/PEN_Q1_SWIM_BANNERS-WOMEN_DESKTOP_2aa506be-8462-43f8-b2a4-a11d88fe5284.webp"
-                      alt=""  class="women-img4"
-                    />
-                    <div class="btn-marvel-main">
-                      <a href="#" class="btn-marvel">SHOP NOW</a>
-                      <i class='bx bx-right-arrow-alt arrow'></i>
-                    </div>
-                  </div>
-                  <div class="swiper-slide last-swiper">
-                    <div swiper-info-content>
-                      <div class="konta-sgv_row">
-                        <div class="swiper-last-name">
-                          <h2>Join the Konta Club!</h2>
-                          <h5>Perks of signing up:</h5>
-                        </div>
-                        <div class="swiper-perks">
-                          <div class="perks-items">
-                            <a href="#">
-                              <box-icon name="gift" type="solid"></box-icon>
-                              <p>WELCOME OFFER</p>
-                            </a>
-                          </div>
-                          <div class="perks-items">
-                            <a href="#">
-                              <box-icon name="discount" type="solid"></box-icon>
-                              <p>EXCLUSIVE DEALS</p>
-                            </a>
-                          </div>
-                          <div class="perks-items">
-                            <a href="#">
-                              <box-icon
-                                name="bell-ring"
-                                type="solid"
-                              ></box-icon>
-                              <p>FIRST DIBS ON NEW DROPS</p>
-                            </a>
-                          </div>
-                          <div class="perks-items">
-                            <a href="#">
-                              <box-icon name="truck" type="solid"></box-icon>
-                              <p>OREDER TRACKING</p>
-                            </a>
-                          </div>
-                          <div class="perks-items">
-                            <a href="#">
-                              <box-icon type="solid" name="cart"></box-icon>
-                              <p>FASTER CHECKOUT</p>
-                            </a>
-                          </div>
-                          <div class="perks-items">
-                            <a href="#">
-                              <box-icon
-                                type="solid"
-                                name="store-alt"
-                              ></box-icon>
-                              <p>30 DAY HASSLE-FREE EXCHANGES IN STORE</p>
-                            </a>
-                          </div>
-                        </div>
-                        <div class="swiper-sale">
-                          <a href="#"><button>GET 20% OFF*</button></a>
-                        </div>
-                        <div class="footer-custom-block">
-                          <ul class="footer-social-links">
-                            <li><a href="#">FACEBOOK</a></li>
-                            <li><a href="#">INSTAGRAM</a></li>
-                            <li><a href="#">TWITTER</a></li>
-                            <li><a href="#">TIKTOK</a></li>
-                            <li><a href="#">CONTACT</a></li>
-                          </ul>
-                        </div>
-                        <div class="footer-custom-block">
-                          <ul class="footer-policies">
-                            <li class="footer-policies-link">
-                              <a href="#">About Us</a>
-                            </li>
-                            <li class="footer-policies-link">
-                              <a href="#">FAQs</a>
-                            </li>
-                            <li class="footer-policies-link">
-                              <a href="#">Pick-up in Store</a>
-                            </li>
-                            <li class="footer-policies-link">
-                              <a href="#">Privacy Policy</a>
-                            </li>
-                            <li><a href="#">Terms of Service</a></li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="swiper-pagination"></div>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-button-next swiper-button-white"></div>
-          <div class="swiper-button-prev"></div>
-          <div class="swiper-pagination"></div>
         </div>
-      </div>
     </main>
+
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <script
       type="module"
@@ -819,6 +797,6 @@
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="./js/index.js"></script>
+    <script src="../js/all-product.js"></script>
   </body>
 </html>

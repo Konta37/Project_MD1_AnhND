@@ -255,26 +255,6 @@ function submitForm(e) {
   }
 }
 
-// //đưa ảnh vào form
-// function convertToBase64() {
-//   //khởi tạo biến lấy id inputimage
-//   const fileInput = document.getElementById(`input-image`);
-//   //trường hợp có nhiều ảnh thì lấy ảnh đầu tiên
-//   //Muốn có chọn nhiều ảnh thì thêm multi ở bên input image
-//   const file = fileInput.files[0];
-
-//   //đọc file
-//   const reader = new FileReader();
-//   reader.onload = function (event) {
-//     const base64 = event.target.result;
-//     imageBase64 = base64;
-//     imageProductHTML.src = imageBase64;
-//   };
-
-//   reader.readAsDataURL(file);
-//   //kết thúc đọc file
-//   imageProductHTML.classList.remove(`hidden`);
-// }
 
 function convertToBase64() {
   const fileInput = document.getElementById("input-image");
