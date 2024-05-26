@@ -42,6 +42,9 @@ let pageSize = 8;
 let totalPage = 1;
 let currentPage = 1;
 let categoryFilter = "All";
+let sortBy = "All";
+let textSearch = "";
+const searchEnter = document.getElementById(`search`);
 function render() {
   let realProducts = JSON.parse(localStorage.getItem(PRODUCTS)) || [];
   // console.log(realProducts);
@@ -51,13 +54,41 @@ function render() {
   if (realProducts.length > 0) {
     id = realProducts[realProducts.length - 1].id + 1;
   }
-  //lọc theo category
-  if (categoryFilter !== "All") {
-    realProducts = realProducts.filter(
-      (product) => product.name === categoryFilter
-    );
-    // console.log(realProducts);
+  if (sortBy == "aToZ") {
+    realProducts = realProducts.sort(function (a, b) {
+      var x = a.productRealName.toLowerCase();
+      var y = b.productRealName.toLowerCase();
+      return x < y ? -1 : x > y ? 1 : 0;
+    });
+  } else if (sortBy == "zToA") {
+    realProducts = realProducts.sort(function (a, b) {
+      var x = a.productRealName.toLowerCase();
+      var y = b.productRealName.toLowerCase();
+      return x > y ? -1 : x < y ? 0 : 1;
+    });
+  } else if (sortBy == "price-ascending") {
+    // realProducts = realProducts.price.sort();
+    realProducts = realProducts.sort(function (a, b) {
+      var x = a.price;
+      var y = b.price;
+      return x < y ? -1 : x > y ? 1 : 0;
+    });
+  } else if (sortBy == "price-descending") {
+    // realProducts = realProducts.price.reverse();
+    realProducts = realProducts.sort(function (a, b) {
+      var x = a.price;
+      var y = b.price;
+      return x > y ? -1 : x < y ? 0 : 1;
+    });
   }
+  // //lọc theo gender
+  // else if (sortBy !== "All") {
+  //   realProducts = realProducts.filter((product) => product.gender === sortBy);
+  // }
+  //lọc theo search (vdu search sam thi hien spham samsung)
+  realProducts = realProducts.filter((product) =>
+  product.productRealName.toLowerCase().includes(textSearch)
+  );
 
   renderPaginations(realProducts);
   renderProducts(realProducts);
@@ -88,7 +119,9 @@ function renderProducts(products) {
                     </div>
                 </a>
                 <a href="#" class="grid-product__link">
-                    <div onclick="changeToProductInfor(${products[i].id})" class="grid-product__image-mask">
+                    <div onclick="changeToProductInfor(${
+                      products[i].id
+                    })" class="grid-product__image-mask">
                         <div class="image-wrap loaded" style="height: 0; padding-bottom: 150%;">
                         <img src="${products[i].image[0]}" alt="">
                         </div>
@@ -152,12 +185,80 @@ function changePage(status) {
   }
   render();
 }
-function changeToProductInfor(id){
+function changeToProductInfor(id) {
   //bring product infor to local and go to product page
   let realProducts = JSON.parse(localStorage.getItem(PRODUCTS)) || [];
-  let productsIndex = realProducts.findIndex(item=>item.id === id);
-  let productObject ={};
+  let productsIndex = realProducts.findIndex((item) => item.id === id);
+  let productObject = {};
   productObject = realProducts[productsIndex];
   localStorage.setItem("product_infor", JSON.stringify(productObject));
   window.location.href = "./product.html";
+}
+let FillterDrawer = document.getElementById("FillterDrawer");
+function closeFilterSide() {
+  FillterDrawer.style.left = "-700px";
+  FillterDrawer.style.transition = "all 1s";
+}
+let FilterDrawerTrigger = document.getElementById("FilterDrawerTrigger");
+FilterDrawerTrigger.addEventListener("click", function () {
+  FillterDrawer.style.left = "-350px";
+  FillterDrawer.style.transition = "all 1s";
+});
+// filter price
+let minValue = document.getElementById("min-value");
+let maxValue = document.getElementById("max-value");
+
+const rangeFill = document.querySelector(".range-fill");
+
+// Function to validate range and update the fill color on slider
+function validateRange(products) {
+  let minPrice = document.getElementById("min-price-value").value;
+  let maxPrice = document.getElementById("max-price-value").value;
+
+  const minPercentage = (minPrice / 1000000) * 100;
+  const maxPercentage = ((maxPrice - 10) / 1000000) * 100;
+
+  rangeFill.style.left = minPercentage + "%";
+  rangeFill.style.width = maxPercentage - minPercentage + "%";
+  // console.log(minPrice,maxPrice);
+  minValue.innerHTML = minPrice + "đ";
+  maxValue.innerHTML = maxPrice + "đ";
+  let realProducts = JSON.parse(localStorage.getItem(PRODUCTS)) || [];
+  realProducts = realProducts.filter(
+    (product) => product.price >= minPrice && product.price <= maxPrice
+  );
+  renderProducts(realProducts);
+}
+
+const inputElements = document.querySelectorAll(".input-rage");
+
+// Add an event listener to each input element
+inputElements.forEach((element) => {
+  element.addEventListener("input", validateRange);
+});
+
+// Initial call to validateRange
+validateRange();
+
+//hiện thay đổi theo cate
+function changeCategory(e) {
+  // console.log(e.target.value);
+  sortBy = e.target.value;
+  currentPage = 1;
+  render();
+}
+
+function clearSearch() {
+  searchEnter.value = "";
+}
+//check theo input và nút search
+function changeTextSearch(e) {
+  e.preventDefault();
+  textSearch = document.getElementById("search").value.toLowerCase();
+  currentPage = 1;
+  let realProducts = JSON.parse(localStorage.getItem(PRODUCTS)) || [];
+  const sortBy = realProducts.filter((item) =>
+    item.productRealName.toLowerCase().includes(textSearch)
+  );
+  render(sortBy);
 }
