@@ -334,14 +334,20 @@ function initUpdate(id){
   price.value = realProducts[index].price;
   quantity.value = realProducts[index].quantity;
   description.value = realProducts[index].description;
-  imageProductHTML.file.src = realProducts[index].image[0];
+  // imageProductHTML.file.src = realProducts[index].image[0];
 
-  console.log(imageProductHTML.file.src);
   imageProductHTML.classList.remove('hidden');
   formAddMainHTML.classList.remove(`hidden`);
   buttonUpdateForm.classList.remove(`hidden`);
   buttonSubmitForm.classList.add(`hidden`)
 
+  imageProductHTML.innerHTML="";
+  realProducts[index].image.forEach((imageSrc) => {
+    const img = document.createElement("img");
+    img.src = imageSrc;
+    img.width = 100; // Set width of image preview
+    imageProductHTML.appendChild(img);
+  });
 }
 
 
@@ -361,7 +367,6 @@ function getDataForm(){
     quantity: quantity.value,
     price: price.value,
     description: description.value,
-    image: imageProductHTML.src,
   };
 }
 function clearForm(){
@@ -382,12 +387,12 @@ function clearForm(){
 function updateProduct(e){
   let realProducts = JSON.parse(localStorage.getItem(PRODUCTS));
   const product = getDataForm();
-  console.log(product);
+  // console.log(product);
   let indexUpdate = realProducts.findIndex(item=>item.id ==idUpdate);
-  console.log(indexUpdate);
+  // console.log(indexUpdate);
   // debugger;
   //doesnt have name of category bc category name of product cant change
-  // realProducts[indexUpdate].name = product.name;
+  realProducts[indexUpdate].name = product.name;
   realProducts[indexUpdate].productCode = product.code;
   realProducts[indexUpdate].gender = product.gender;
   realProducts[indexUpdate].productRealName = product.realname;
@@ -396,11 +401,47 @@ function updateProduct(e){
   realProducts[indexUpdate].quantity = product.quantity;
   realProducts[indexUpdate].description = product.description;
   realProducts[indexUpdate].price = +product.price;
-  realProducts[indexUpdate].image = product.image;
+  // realProducts[indexUpdate].image = product.image;
   console.log(product.name);
   console.log(realProducts[indexUpdate]);
-  localStorage.setItem(PRODUCTS, JSON.stringify(realProducts))
-  render();
+  
+  // localStorage.setItem(PRODUCTS, JSON.stringify(realProducts))
+  const editInputImage = document.getElementById("input-image");
+  const images =[];
+  
+  if (editInputImage.files.length > 0) {
+    Array.from(editInputImage.files).forEach((file, index) => {
+      const reader = new FileReader();
+      reader.onload = function (event) {
+        const img = document.createElement("img");
+        img.src = event.target.result;
+        img.width = 300; // Set width of image preview
+        // newImgContainer.appendChild(img);
+        images.push(event.target.result);
+
+        // When the last file is read, update the row
+        if (index === editInputImage.files.length - 1) {
+          realProducts[indexUpdate].image = images
+          localStorage.setItem(PRODUCTS, JSON.stringify(realProducts))
+          render()
+        }
+      };
+
+      reader.readAsDataURL(file);
+    });
+  } else {
+    // If no new images are selected, use the original images
+    originalImages.forEach((imageSrc) => {
+      const img = document.createElement("img");
+      img.src = imageSrc;
+      img.width = 300; // Set width of image preview
+      // newImgContainer.appendChild(img);
+      images.push(imageSrc);
+    });
+    realProducts[indexUpdate].image = images
+    localStorage.setItem(PRODUCTS, JSON.stringify(realProducts))
+    render()
+  }
   closeForm();
   return;
 }
