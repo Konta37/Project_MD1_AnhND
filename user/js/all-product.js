@@ -153,7 +153,13 @@ function changePage(status) {
   render();
 }
 function changeToProductInfor(id){
-    
+  //bring product infor to local and go to product page
+  let realProducts = JSON.parse(localStorage.getItem(PRODUCTS)) || [];
+  let productsIndex = realProducts.findIndex(item=>item.id === id);
+  let productObject ={};
+  productObject = realProducts[productsIndex];
+  localStorage.setItem("product_infor", JSON.stringify(productObject));
+  window.location.href = "./product.html";
 }
 //   <div class="grid__item grid-product small--one-half medium-up--one-quarter grid-product__has-quick-shop aos-init aos-animate">
 //                         <div class="grid-product__content">
