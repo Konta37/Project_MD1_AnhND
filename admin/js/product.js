@@ -334,9 +334,8 @@ function initUpdate(id){
   price.value = realProducts[index].price;
   quantity.value = realProducts[index].quantity;
   description.value = realProducts[index].description;
-  imageProductHTML.file.src = realProducts[index].image[0];
+  imageProductHTML.src = realProducts[index].image[0];
 
-  console.log(imageProductHTML.file.src);
   imageProductHTML.classList.remove('hidden');
   formAddMainHTML.classList.remove(`hidden`);
   buttonUpdateForm.classList.remove(`hidden`);
