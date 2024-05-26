@@ -483,8 +483,7 @@ img {
 .img-display {
   overflow: hidden;
   width: 85%;
-  max-height: 800px;
-  position: sticky;
+  max-height: 1000px;
 }
 .img-showcase {
   display: flex;
