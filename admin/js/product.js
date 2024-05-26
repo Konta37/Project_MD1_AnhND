@@ -334,11 +334,9 @@ function initUpdate(id){
   price.value = realProducts[index].price;
   quantity.value = realProducts[index].quantity;
   description.value = realProducts[index].description;
-<<<<<<< HEAD
+
   // imageProductHTML.file.src = realProducts[index].image[0];
-=======
   imageProductHTML.src = realProducts[index].image[0];
->>>>>>> eb59d51c25f3412c6dbf1115af5abfd230c87b0a
 
   imageProductHTML.classList.remove('hidden');
   formAddMainHTML.classList.remove(`hidden`);
