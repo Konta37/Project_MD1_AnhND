@@ -161,26 +161,3 @@ function changeToProductInfor(id){
   localStorage.setItem("product_infor", JSON.stringify(productObject));
   window.location.href = "./product.html";
 }
-//   <div class="grid__item grid-product small--one-half medium-up--one-quarter grid-product__has-quick-shop aos-init aos-animate">
-//                         <div class="grid-product__content">
-//                           <a href="#" class="wishlist-btn grid-wishlist-btn style_1">
-//                             <div style="display: initial;" class="wishlist_btn_icon">
-//                               <i class='bx bx-heart' ></i>
-//                             </div>
-//                           </a>
-//                           <a href="#" class="grid-product__link">
-//                             <div class="grid-product__image-mask">
-//                               <div class="image-wrap loaded" style="height: 0; padding-bottom: 150%;">
-//                                 <img src="../../Public/image/Collection/Men/981378-Light_Peach_1.webp" alt="">
-//                               </div>
-//                             </div>
-//                             <div class="grid-product__meta">
-//                               <div class="grid-product__title">Spike Dynamics Regular Fit Graphic T-Shirt</div>
-//                               <div class="grid-product__price">350.000đ</div>
-//                               <button class="quick-product__btn js-modal-open-quick-modal-8121681051838 small--hide">
-//                                 <span class="quick-product__label">+ Add to cart</span>
-//                               </button>
-//                             </div>
-//                           </a>
-//                         </div>
-//                       </div>
