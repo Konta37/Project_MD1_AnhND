@@ -63,10 +63,11 @@ function render() {
   let productInfor = JSON.parse(localStorage.getItem("product_infor")) || [];
   //check real name of productInfor to show other product
   let realProducts = JSON.parse(localStorage.getItem("products_03")) || [];
+  let productIndex = realProducts.findIndex(item=>item.id ==productInfor.id);
   productName.innerHTML = `${productInfor.productRealName}`;
   let stringSameProduct = "";
   for (let i in realProducts) {
-    if (productInfor.productRealName == realProducts[i].productRealName) {
+    if (productInfor.idCategory == realProducts[i].idCategory) {
       stringSameProduct += `
           <div class="other-color aos-animate">
             <a href="#" class="other-item">
@@ -81,9 +82,9 @@ function render() {
     }
   }
   //render product detail
-  renderDetailProduct(productInfor, stringSameProduct);
+  renderDetailProduct(realProducts[productIndex], stringSameProduct);
   //render similar product with catelogry
-  renderSimilarProduct(productInfor, realProducts);
+  renderSimilarProduct(realProducts[productIndex], realProducts);
 }
 render();
 function renderDetailProduct(product, textHtml) {
@@ -116,20 +117,6 @@ function renderDetailProduct(product, textHtml) {
                 />
               </a>
             </div>
-            <div class="img-item">
-              <a href="#" data-id="3">
-                <img
-                  src="${product.image[2]}"
-                />
-              </a>
-            </div>
-            <div class="img-item">
-              <a href="#" data-id="4">
-                <img
-                  src="${product.image[3]}"
-                />
-              </a>
-            </div>
           </div>
           <div class="img-display">
             <div class="img-showcase">
@@ -138,12 +125,6 @@ function renderDetailProduct(product, textHtml) {
               />
               <img
                 src="${product.image[1]}"
-              />
-              <img
-                src="${product.image[2]}"
-              />
-              <img
-                src="${product.image[3]}"
               />
             </div>
           </div>

@@ -193,7 +193,8 @@ function changeToProductInfor(id) {
   let realProducts = JSON.parse(localStorage.getItem(PRODUCTS)) || [];
   let productsIndex = realProducts.findIndex((item) => item.id === id);
   let productObject = {};
-  productObject = realProducts[productsIndex];
+  productObject.id = realProducts[productsIndex].id;
+  productObject.idCategory = realProducts[productsIndex].idCategory;
   localStorage.setItem("product_infor", JSON.stringify(productObject));
   window.location.href = "./product.html";
 }
