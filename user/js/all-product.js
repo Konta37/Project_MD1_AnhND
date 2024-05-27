@@ -35,6 +35,7 @@ function dropDownList8() {
 let mainContent = document.getElementById("MainContent");
 const tbodyHTML = document.getElementById(`product-item`);
 const pageList = document.getElementById(`page-list`);
+const notificationCart = document.querySelector(`.notification-cart`)
 let PRODUCTS = "products_03";
 let CATEGORYS = "categorys";
 
@@ -103,6 +104,7 @@ function renderProducts(products) {
     end = products.length;
   }
   const categorys = JSON.parse(localStorage.getItem(CATEGORYS)) || [];
+  let carts = JSON.parse(localStorage.getItem("cart")) || [];
   for (let i = start; i < end; i++) {
     //check status disable or available in category to show product
     let indexCategory = categorys.findIndex(
@@ -133,7 +135,7 @@ function renderProducts(products) {
                         <div class="grid-product__price">${formatMoney(
                           products[i].price
                         )}</div>
-                        <button class="quick-product__btn js-modal-open-quick-modal-8121681051838 small--hide">
+                        <button class="quick-product__btn js-modal-open-quick-modal-8121681051838 small--hide" onclick="addToCart(${products[i].id})">
                         <span class="quick-product__label">+ Add to cart</span>
                         </button>
                     </div>
@@ -143,6 +145,7 @@ function renderProducts(products) {
             `;
     }
   }
+  notificationCart.innerHTML=`${calNumberProduct(carts)}`;
   tbodyHTML.innerHTML = stringHTML;
 }
 //điều chỉnh số lượng sản phẩm trong trang
@@ -261,4 +264,28 @@ function changeTextSearch(e) {
     item.productRealName.toLowerCase().includes(textSearch)
   );
   render(sortBy);
+}
+//add to cart
+function addToCart(id){
+  let carts = JSON.parse(localStorage.getItem("cart")) || [];
+  let cart = {};
+  let check = carts.findIndex((item) => item.idProduct == id);
+  if (check !== -1) {
+    carts[check].quantityPrd = carts[check].quantityPrd + 1;
+    localStorage.setItem("cart", JSON.stringify(carts));
+    notificationCart.innerHTML=`${calNumberProduct(carts)}`;
+  } else {
+    cart.idProduct = id;
+    cart.quantityPrd = 1;
+    carts.push(cart);
+    localStorage.setItem("cart", JSON.stringify(carts));
+    notificationCart.innerHTML=`${calNumberProduct(carts)}`;
+  }
+}
+function calNumberProduct(cartss){
+  let count =0;
+  for (let key in cartss) {
+    count = count + cartss[key].quantityPrd;
+  }
+  return count;
 }

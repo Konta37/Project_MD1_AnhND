@@ -46,7 +46,11 @@ function dropDownList9() {
 // });
 let productInforSpace = document.getElementById("product-infor-space");
 let productSimilarSpace = document.getElementById("product-similar-space");
-let productName= document.getElementById("name-product");
+let productName = document.getElementById("name-product");
+
+//increase number to buy
+let quantityBuy = 1;
+
 //chuyển về tiền việt
 function formatMoney(money) {
   return new Intl.NumberFormat(`vi-VN`, {
@@ -58,7 +62,7 @@ function render() {
   let productInfor = JSON.parse(localStorage.getItem("product_infor")) || [];
   //check real name of productInfor to show other product
   let realProducts = JSON.parse(localStorage.getItem("products_03")) || [];
-  productName.innerHTML=`${productInfor.productRealName}`
+  productName.innerHTML = `${productInfor.productRealName}`;
   let stringSameProduct = "";
   for (let i in realProducts) {
     if (productInfor.productRealName == realProducts[i].productRealName) {
@@ -76,12 +80,12 @@ function render() {
     }
   }
   //render product detail
-  renderDetailProduct(productInfor,stringSameProduct);
+  renderDetailProduct(productInfor, stringSameProduct);
   //render similar product with catelogry
-  renderSimilarProduct(productInfor,realProducts);
+  renderSimilarProduct(productInfor, realProducts);
 }
 render();
-function renderDetailProduct(product,textHtml) {
+function renderDetailProduct(product, textHtml) {
   let stringHTML = "";
   let stringStatus = "";
   //check status of productInfor
@@ -187,18 +191,20 @@ function renderDetailProduct(product,textHtml) {
                   <input
                     type="text"
                     class="js-qty__num"
-                    value="1"
+                    value="${quantityBuy}"
                     min="1"
                   />
                   <button
                     type="button"
                     class="js-qty__adjust js-qty__adjust--minus"
+                    onclick="minusQuantity()"
                   >
                     -
                   </button>
                   <button
                     type="button"
                     class="js-qty__adjust js-qty__adjust--plus"
+                    onclick="plusQuantity()"
                   >
                     +
                   </button>
@@ -217,7 +223,9 @@ function renderDetailProduct(product,textHtml) {
               </div>
             </div>
             <div class="shopify-block shopify-app-block">
-              <a href="#" class="wishlist-btn2">
+              <a href="#" class="wishlist-btn2" onclick="addToWhishList(${
+                product.id
+              })">
                 <div class="hulk_wl_icon">
                   <i class="bx bx-heart"></i>
                 </div>
@@ -227,7 +235,9 @@ function renderDetailProduct(product,textHtml) {
               </a>
             </div>
             <div class="shopify-block shopify-app-block">
-              <a href="#" class="wishlist-btn2">
+              <a href="#" class="wishlist-btn2" onclick="addToCart(${
+                product.id
+              })">
                 <span class="hulk-wishlist-btn-title">Add to cart</span>
               </a>
             </div>
@@ -292,19 +302,19 @@ function renderDetailProduct(product,textHtml) {
   `;
   productInforSpace.innerHTML = stringHTML;
 }
-  //render similar product with catelogry
-function renderSimilarProduct(product,listProduct) {
-  let count =0;
-  let stringHTML ="";
-  for(let i in listProduct){
-    if(product.idCategory ==listProduct[i].idCategory&&count<4){
-      stringHTML+=`
+//render similar product with catelogry
+function renderSimilarProduct(product, listProduct) {
+  let count = 0;
+  let stringHTML = "";
+  for (let i in listProduct) {
+    if (product.idCategory == listProduct[i].idCategory && count < 4) {
+      stringHTML += `
       <div
       class="grid__item grid-product small--one-half medium-up--one-quarter grid-product__has-quick-shop aos-init aos-animate"
     >
       <div class="grid-product__content">
         <a
-          href="#"
+          href=""
           class="wishlist-btn grid-wishlist-btn style_1"
         >
           <div style="display: initial" class="wishlist_btn_icon">
@@ -312,7 +322,7 @@ function renderSimilarProduct(product,listProduct) {
           </div>
         </a>
         <a href="#" class="grid-product__link">
-          <div class="grid-product__image-mask">
+          <div class="grid-product__image-mask" onclick="changePage(${listProduct[i].id})">
             <div
               class="image-wrap loaded"
               style="height: 0; padding-bottom: 150%"
@@ -328,9 +338,12 @@ function renderSimilarProduct(product,listProduct) {
             <div class="grid-product__title">
               ${listProduct[i].productRealName}
             </div>
-            <div class="grid-product__price">${formatMoney(listProduct[i].price)}</div>
+            <div class="grid-product__price">${formatMoney(
+              listProduct[i].price
+            )}</div>
             <button
               class="quick-product__btn js-modal-open-quick-modal-8121681051838 small--hide"
+              onclick="btnAddNewCart(${listProduct[i].id})"
             >
               <span class="quick-product__label"
                 >+ Add to cart</span
@@ -344,13 +357,13 @@ function renderSimilarProduct(product,listProduct) {
       count++;
     }
   }
-  productSimilarSpace.innerHTML=stringHTML;
+  productSimilarSpace.innerHTML = stringHTML;
 }
-function changeToProductInfor(id){
+function changeToProductInfor(id) {
   //bring product infor to local and go to product page
   let realProducts = JSON.parse(localStorage.getItem("products_03")) || [];
-  let productsIndex = realProducts.findIndex(item=>item.id === id);
-  let productObject ={};
+  let productsIndex = realProducts.findIndex((item) => item.id === id);
+  let productObject = {};
   productObject = realProducts[productsIndex];
   localStorage.setItem("product_infor", JSON.stringify(productObject));
   window.location.href = "./product.html";
@@ -377,3 +390,61 @@ function slideImage() {
 }
 
 window.addEventListener("resize", slideImage);
+//btn to increase
+let btnMinusQuantity = document.querySelector(`js-qty__adjust--minus`);
+let btnPlusQuantity = document.querySelector(`js-qty__adjust--plus`);
+
+function plusQuantity() {
+  quantityBuy = quantityBuy + 1;
+  render();
+}
+function minusQuantity() {
+  if (quantityBuy > 1) {
+    quantityBuy = quantityBuy - 1;
+  }
+  render();
+}
+
+//add to whishlist
+function addToWhishList(id) {
+  // console.log(id);
+}
+
+function changePage(id){
+  //bring product infor to local and go to product page
+  let realProducts = JSON.parse(localStorage.getItem("products_03")) || [];
+  let productsIndex = realProducts.findIndex((item) => item.id === id);
+  let productObject = {};
+  productObject = realProducts[productsIndex];
+  localStorage.setItem("product_infor", JSON.stringify(productObject));
+  window.location.href = "./product.html";
+}
+//add to cart
+function addToCart(id, quantityProduct) {
+  let carts = JSON.parse(localStorage.getItem("cart")) || [];
+  let cart = {};
+  let check = carts.findIndex((item) => item.idProduct == id);
+  if (check !== -1) {
+    carts[check].quantityPrd = carts[check].quantityPrd + quantityBuy;
+    localStorage.setItem("cart", JSON.stringify(carts));
+  } else {
+    cart.idProduct = id;
+    cart.quantityPrd = quantityBuy;
+    carts.push(cart);
+    localStorage.setItem("cart", JSON.stringify(carts));
+  }
+}
+function btnAddNewCart(id){
+  let carts = JSON.parse(localStorage.getItem("cart")) || [];
+  let cart = {};
+  let check = carts.findIndex((item) => item.idProduct == id);
+  if (check !== -1) {
+    carts[check].quantityPrd = carts[check].quantityPrd + 1;
+    localStorage.setItem("cart", JSON.stringify(carts));
+  } else {
+    cart.idProduct = id;
+    cart.quantityPrd = 1;
+    carts.push(cart);
+    localStorage.setItem("cart", JSON.stringify(carts));
+  }
+}
