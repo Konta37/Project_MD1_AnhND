@@ -43,6 +43,7 @@ btnMenu.onclick = function openMenu() {
 
 let cartWrapper = document.querySelector(".cart_wrapper");
 let cartFooter = document.querySelector(".cart__footer");
+const notificationCart = document.querySelector(`.notification-cart`);
 
 let total = 0;
 
@@ -103,6 +104,7 @@ function render() {
     `;
       total = total + priceTotal;
     }
+    notificationCart.innerHTML=`${calNumberProduct(carts)}`;
     cartWrapper.innerHTML = stringHTML;
     renderCartFooter(total);
   }
@@ -217,4 +219,11 @@ function minusQuantity(id) {
   }
   total = 0;
   render();
+}
+function calNumberProduct(cartss){
+  let count =0;
+  for (let key in cartss) {
+    count = count + cartss[key].quantityPrd;
+  }
+  return count;
 }

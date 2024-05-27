@@ -35,7 +35,7 @@ function dropDownList8() {
 let mainContent = document.getElementById("MainContent");
 const tbodyHTML = document.getElementById(`product-item`);
 const pageList = document.getElementById(`page-list`);
-const notificationCart = document.querySelector(`.notification-cart`)
+const notificationCart = document.querySelector(`.notification-cart`);
 let PRODUCTS = "products_03";
 let CATEGORYS = "categorys";
 

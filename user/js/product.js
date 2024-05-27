@@ -47,6 +47,7 @@ function dropDownList9() {
 let productInforSpace = document.getElementById("product-infor-space");
 let productSimilarSpace = document.getElementById("product-similar-space");
 let productName = document.getElementById("name-product");
+const notificationCart = document.querySelector(`.notification-cart`)
 
 //increase number to buy
 let quantityBuy = 1;
@@ -357,6 +358,8 @@ function renderSimilarProduct(product, listProduct) {
       count++;
     }
   }
+  let carts = JSON.parse(localStorage.getItem("cart")) || [];
+  notificationCart.innerHTML=`${calNumberProduct(carts)}`;
   productSimilarSpace.innerHTML = stringHTML;
 }
 function changeToProductInfor(id) {
@@ -427,11 +430,13 @@ function addToCart(id, quantityProduct) {
   if (check !== -1) {
     carts[check].quantityPrd = carts[check].quantityPrd + quantityBuy;
     localStorage.setItem("cart", JSON.stringify(carts));
+    notificationCart.innerHTML=`${calNumberProduct(carts)}`;
   } else {
     cart.idProduct = id;
     cart.quantityPrd = quantityBuy;
     carts.push(cart);
     localStorage.setItem("cart", JSON.stringify(carts));
+    notificationCart.innerHTML=`${calNumberProduct(carts)}`;
   }
 }
 function btnAddNewCart(id){
@@ -447,4 +452,11 @@ function btnAddNewCart(id){
     carts.push(cart);
     localStorage.setItem("cart", JSON.stringify(carts));
   }
+}
+function calNumberProduct(cartss){
+  let count =0;
+  for (let key in cartss) {
+    count = count + cartss[key].quantityPrd;
+  }
+  return count;
 }
