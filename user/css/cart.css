@@ -520,6 +520,7 @@ form {
   height: 100%;
 }
 .image-wrap {
+  cursor: pointer;
 }
 .image-wrap img {
   object-fit: cover;

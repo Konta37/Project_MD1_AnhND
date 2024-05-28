@@ -112,7 +112,8 @@ function renderProducts(products) {
     );
     if (indexCategory !== -1) {
       products[i].name = categorys[indexCategory].name;
-      stringHTML += `
+      if(products[i].status==true){
+        stringHTML += `
         <div class="grid__item grid-product small--one-half medium-up--one-quarter grid-product__has-quick-shop aos-init aos-animate">
             <div class="grid-product__content">
                 <a class="wishlist-btn grid-wishlist-btn style_1" onclick="ChangeWishListPage(${products[i].id})">
@@ -143,6 +144,7 @@ function renderProducts(products) {
             </div>
         </div>
             `;
+      }
     }
   }
   notificationCart.innerHTML=`${calNumberProduct(carts)}`;
@@ -199,6 +201,7 @@ function changeToProductInfor(id) {
   localStorage.setItem("product_infor", JSON.stringify(productObject));
   window.location.href = "./product.html";
 }
+//filter
 let FillterDrawer = document.getElementById("FillterDrawer");
 function closeFilterSide() {
   FillterDrawer.style.left = "-700px";
@@ -301,7 +304,7 @@ function ChangeWishListPage(id){
     // notificationCart.innerHTML=`${calNumberProduct(whishlists)}`;
   } else {
     whishlist.idProduct = id;
-    whishlists.push(cart);
+    whishlists.push(whishlist);
     localStorage.setItem("whishList", JSON.stringify(whishlists));
     // notificationCart.innerHTML=`${calNumberProduct(whishlists)}`;
   }

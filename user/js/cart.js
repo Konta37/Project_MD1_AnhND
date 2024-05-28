@@ -65,7 +65,7 @@ function render() {
       stringHTML += `
       <div class="cart__item">
           <div class="cart__item--image">
-              <a href="#" class="image-wrap loaded">
+              <a class="image-wrap loaded" onclick="changeToProductInfor(${realProducts[productIndex].id})">
                   <img src="${realProducts[productIndex].image[0]}" alt="">
               </a>
           </div>
@@ -248,4 +248,16 @@ function deleteAll(){
       render();
     }
   });
+}
+
+function changeToProductInfor(id) {
+  //bring product infor to local and go to product page
+  let realProducts = JSON.parse(localStorage.getItem("products_03")) || [];
+  let productsIndex = realProducts.findIndex((item) => item.id === id);
+  let productObject = {};
+  productObject.id = realProducts[productsIndex].id;
+  productObject.idCategory = realProducts[productsIndex].idCategory;
+  productObject.productRealName = realProducts[productsIndex].productRealName;
+  localStorage.setItem("product_infor", JSON.stringify(productObject));
+  window.location.href = "./product.html";
 }
