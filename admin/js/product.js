@@ -275,7 +275,6 @@ function convertToBase64() {
 
     reader.readAsDataURL(file);
   }
-  console.log(imageBase64Arr);
 
   previewContainer.classList.remove("hidden"); // Show the preview container
 }

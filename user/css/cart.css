@@ -786,6 +786,12 @@ small {
 .one-quarter {
   width: 25%;
 }
+.delete_all{
+  text-align: right;
+  color: #db0303;
+  font-weight: 700;
+  padding: 24px 0;
+}
 @media screen and (max-width: 768px) {
   /* .site-nav {
       padding: 0 10px;

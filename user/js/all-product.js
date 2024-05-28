@@ -115,7 +115,7 @@ function renderProducts(products) {
       stringHTML += `
         <div class="grid__item grid-product small--one-half medium-up--one-quarter grid-product__has-quick-shop aos-init aos-animate">
             <div class="grid-product__content">
-                <a href="#" class="wishlist-btn grid-wishlist-btn style_1">
+                <a class="wishlist-btn grid-wishlist-btn style_1" onclick="ChangeWishListPage(${products[i].id})">
                     <div style="display: initial;" class="wishlist_btn_icon">
                         <i class='bx bx-heart' ></i>
                     </div>
@@ -195,6 +195,7 @@ function changeToProductInfor(id) {
   let productObject = {};
   productObject.id = realProducts[productsIndex].id;
   productObject.idCategory = realProducts[productsIndex].idCategory;
+  productObject.productRealName = realProducts[productsIndex].productRealName;
   localStorage.setItem("product_infor", JSON.stringify(productObject));
   window.location.href = "./product.html";
 }
@@ -289,4 +290,19 @@ function calNumberProduct(cartss){
     count = count + cartss[key].quantityPrd;
   }
   return count;
+}
+
+function ChangeWishListPage(id){
+  
+  let whishlists = JSON.parse(localStorage.getItem("whishList")) || [];
+  let whishlist ={};
+  let check = whishlists.findIndex((item) => item.idProduct == id);
+  if (check !== -1) {
+    // notificationCart.innerHTML=`${calNumberProduct(whishlists)}`;
+  } else {
+    whishlist.idProduct = id;
+    whishlists.push(cart);
+    localStorage.setItem("whishList", JSON.stringify(whishlists));
+    // notificationCart.innerHTML=`${calNumberProduct(whishlists)}`;
+  }
 }

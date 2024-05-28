@@ -67,7 +67,7 @@ function render() {
   productName.innerHTML = `${productInfor.productRealName}`;
   let stringSameProduct = "";
   for (let i in realProducts) {
-    if (productInfor.idCategory == realProducts[i].idCategory) {
+    if (productInfor.productRealName == realProducts[i].productRealName) {
       stringSameProduct += `
           <div class="other-color aos-animate">
             <a href="#" class="other-item">
