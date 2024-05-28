@@ -20,7 +20,7 @@ function dropDownList() {
   const searchEnter = document.getElementById(`search`);
   
   let imageBase64 = null;
-  const DISCOUNT = "categorys";
+  const BILLS = "bills";
   
   let pageSize = 5;
   let totalPage = 1;
@@ -35,7 +35,8 @@ function dropDownList() {
   
   //Call element from form
   // const prdId = document.getElementById('id')
-  const prdName = document.getElementById('name');
+  const DsCode = document.getElementById('codeDiscount');
+  const DsValue = document.getElementById('valueDiscount');
   function openForm() {
     formAddMainHTML.classList.remove(`hidden`);
     buttonSubmitForm.classList.remove('hidden');
@@ -51,48 +52,44 @@ function dropDownList() {
     searchEnter.value="";
   }
   function render() {
-    let realProducts = JSON.parse(localStorage.getItem(DISCOUNT)) || [];
+    let bill = JSON.parse(localStorage.getItem(BILLS)) || [];
     // console.log(realProducts);
      //Khởi tạo id bằng 1, nếu mảng category có ptu thì lấy dữ liệu ptu cuối +1
      let id = 1;
      //ktra xem có ptu hay ko
-     if (realProducts.length>0){
-       id = realProducts[realProducts.length -1].id+1;
+     if (bill.length>0){
+       id = bill[bill.length -1].id+1;
      }
-    //lọc theo category
-    if (categoryFilter !== "All") {
-      realProducts = realProducts.filter(
-        (product) => product.productType === categoryFilter
-      );
-      // console.log(realProducts);
-    }
     //lọc theo search (vdu search sam thi hien spham samsung)
-    realProducts = realProducts.filter((product) =>
-      product.name.toLowerCase().includes(textSearch)
+    bill = bill.filter((product) =>
+      product.email.toLowerCase().includes(textSearch)
     );
-    renderPaginations(realProducts);
-    renderProducts(realProducts);
+    renderPaginations(bill);
+    renderProducts(bill);
   }
   render();
   
   //đưa list products ra
-  function renderProducts(products) {
+  function renderProducts(billR) {
     let stringHTML = "";
     let start = (currentPage - 1) * pageSize;
     let end = start + pageSize;
-    if (end > products.length) {
-      end = products.length;
+    if (end > billR.length) {
+      end = billR.length;
     }
     for (let i = start; i < end; i++) {
       stringHTML += `
                   <tr>
-                      <td>${products[i].id}</td>
-                      <td>${products[i].name}</td>
-                      <td>${products[i].status ? "Available" : "Disable"}</td>
+                      <td>${billR[i].idBill}</td>
+                      <td>${billR[i].email}</td>
+                      <td>${billR[i].Infor}</td>
+                      <td>${billR[i].totalQuantity}</td>
+                      <td>${billR[i].total}</td>
+                      <td>${billR[i].status ? "Waited" : "Done"}</td>
                       <td>
-                          <button onClick="initUpdate('${products[i].id}')">Edit</button>
+                          <button onClick="initUpdate('${billR[i].idDiscount}')">Edit</button>
                           <button onClick="changeStatus(${i})">${
-        products[i].status ? "Disable" : "Available"
+        billR[i].status ? "Done" : "Waited"
       }</button>
                       </td>
                   </tr>
@@ -101,8 +98,8 @@ function dropDownList() {
     tbodyHTML.innerHTML = stringHTML;
   }
   //điều chỉnh số lượng sản phẩm trong trang
-  function renderPaginations(products) {
-    totalPage = Math.ceil(products.length / pageSize);
+  function renderPaginations(billR) {
+    totalPage = Math.ceil(billR.length / pageSize);
     let stringHTML = "";
     for (let i = 1; i <= totalPage; i++) {
       if (currentPage === i) {
@@ -160,8 +157,8 @@ function dropDownList() {
     e.preventDefault()
     // textSearch = e.target.value.toLowerCase();
     currentPage = 1;
-    const products = JSON.parse(localStorage.getItem(DISCOUNT));
-    const categoryFilter = products.filter(item => item.name.toLowerCase().includes(textSearch));
+    const bill = JSON.parse(localStorage.getItem(BILLS));
+    const categoryFilter = bill.filter(item => item.email.toLowerCase().includes(textSearch));
   
     render(categoryFilter)
     
@@ -170,112 +167,12 @@ function dropDownList() {
   //chuyển trạng thái status
   function changeStatus(i) {
 
-    const swalWithBootstrapButtons = Swal.mixin({
-      customClass: {
-        confirmButton: "btn btn-success",
-        cancelButton: "btn btn-danger"
-      },
-      buttonsStyling: false
-    });
-    swalWithBootstrapButtons.fire({
-      title: "Are you sure?",
-      text: "It will change status of products.",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonText: "Yes, do it!",
-      cancelButtonText: "No, cancel!",
-      reverseButtons: true
-    }).then((result) => {
-      if (result.isConfirmed) {
-        //Find index to 
-        const products = JSON.parse(localStorage.getItem(DISCOUNT));
-        products[i].status = !products[i].status;
-        localStorage.setItem(DISCOUNT, JSON.stringify(products));
-        render();
-  
-        swalWithBootstrapButtons.fire({
-          title: "Deleted!",
-          text: "Your file has been deleted.",
-          icon: "success"
-        });
-      } else if (
-        /* Read more about handling dismissals below */
-        result.dismiss === Swal.DismissReason.cancel
-      ) {
-        swalWithBootstrapButtons.fire({
-          title: "Cancelled",
-          text: "Your imaginary file is safe :)",
-          icon: "error"
-        });
-      }
-    });
+    const bill = JSON.parse(localStorage.getItem(BILLS));
+    bill[i].status = !bill[i].status;
+    localStorage.setItem(BILLS, JSON.stringify(bill));
+    render();
   }
   
-  function submitForm(e) {
-    e.preventDefault();
-    // preventDefault()
-  
-    const formData = new FormData(e.target);
-    const values = {};
-    for (let [name, value] of formData.entries()) {
-      values[name] = value;
-    }
-    // values.price = +values.price;
-    // values.quantity = +values.quantity;
-  
-    // values.image = imageBase64;
-  
-    
-  
-    //check dk form
-    let check = validateFields(values);
-    if (check) {
-      const products = JSON.parse(localStorage.getItem(DISCOUNT)) || [];
-      let id = 1;
-      if (products.length > 0) {
-        id = products[products.length - 1].id + 1;
-      }
-      values.id = id;
-      values.status = true;
-      products.push(values);
-      localStorage.setItem(DISCOUNT, JSON.stringify(products));
-      e.target.reset();
-      closeForm();
-  
-      //sdung render lọc các sản phẩm để hiện lên màn hình
-      render();
-    }
-  }
-  
-//   //đưa ảnh vào form
-//   function convertToBase64() {
-//     //khởi tạo biến lấy id inputimage
-//     const fileInput = document.getElementById(`input-image`);
-//     //trường hợp có nhiều ảnh thì lấy ảnh đầu tiên
-//     //Muốn có chọn nhiều ảnh thì thêm multi ở bên input image
-//     const file = fileInput.files[0];
-  
-//     //đọc file
-//     const reader = new FileReader();
-//     reader.onload = function (event) {
-//       const base64 = event.target.result;
-//       imageBase64 = base64;
-//       imageProductHTML.src = imageBase64;
-//     };
-  
-//     reader.readAsDataURL(file);
-//     //kết thúc đọc file
-//     imgProducthiddenHTML.classList.remove(`hidden`);
-//   }
-//   function showToast(message) {
-//     toastifyHTML.classList.toggle(`hidden`);
-//     toastifyMessageHTML.innerHTML = message;
-//     const idTimeout = setTimeout(function () {
-//       toastifyHTML.classList.toggle(`hidden`);
-//       toastifyMessageHTML.innerHTML = "";
-//       clearTimeout(idTimeout);
-//     }, 2000);
-//   }
   //funtion check điều kiện
   function validateFields(product) {
 
@@ -285,14 +182,15 @@ function dropDownList() {
   //Funtion update
   function initUpdate(id){
     idUpdate=id;
-    let realProducts = JSON.parse(localStorage.getItem(DISCOUNT)) || [];
+    let realProducts = JSON.parse(localStorage.getItem(BILLS)) || [];
     // realProducts.findIndex(+id)
     // realProducts.id.findIndex(id)
     let index = getIndexById(id)
   
     // prdId.value = realProducts[index].id;
 
-    DsCode.value = realProducts[index].name;
+    DsCode.value = realProducts[index].codeDiscount;
+    DsValue.value = realProducts[index].valueDiscount;
 
     // imageProductHTML.classList.remove('hidden');
     formAddMainHTML.classList.remove(`hidden`);
@@ -313,30 +211,33 @@ function dropDownList() {
   
   
   function getIndexById(id){
-    let realProducts = JSON.parse(localStorage.getItem(DISCOUNT));
-    return realProducts.findIndex(product=> product.id ==id);
+    let realProducts = JSON.parse(localStorage.getItem(BILLS));
+    return realProducts.findIndex(product=> product.idDiscount ==id);
   }
   function getDataForm(){
     // console.log(imgProducthiddenHTML.src);
     return {
       // id: prdId.value,
-      name: DsCode.value,
+      codeDiscount: DsCode.value,
+      valueDiscount: +DsValue.value
     };
   }
   function clearForm(){
     DsCode.value="";
+    DsValue.value="";
   }
   function updateProduct(e){
-    let realProducts = JSON.parse(localStorage.getItem(DISCOUNT));
+    let realProducts = JSON.parse(localStorage.getItem(BILLS));
     const product = getDataForm();
 
 
-    let indexUpdate = realProducts.findIndex(item=>item.id ==idUpdate);
+    let indexUpdate = realProducts.findIndex(item=>item.idDiscount ==idUpdate);
 
   
-    realProducts[indexUpdate].name = product.name;
+    realProducts[indexUpdate].codeDiscount = product.codeDiscount;
+    realProducts[indexUpdate].valueDiscount = product.valueDiscount;
 
-    localStorage.setItem(DISCOUNT, JSON.stringify(realProducts))
+    localStorage.setItem(BILLS, JSON.stringify(realProducts))
     render();
     closeForm();
     return;

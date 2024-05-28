@@ -20,7 +20,7 @@ function dropDownList() {
   const searchEnter = document.getElementById(`search`);
   
   let imageBase64 = null;
-  const DISCOUNT = "categorys";
+  const DISCOUNT = "discount";
   
   let pageSize = 5;
   let totalPage = 1;
@@ -35,7 +35,8 @@ function dropDownList() {
   
   //Call element from form
   // const prdId = document.getElementById('id')
-  const prdName = document.getElementById('name');
+  const DsCode = document.getElementById('codeDiscount');
+  const DsValue = document.getElementById('valueDiscount');
   function openForm() {
     formAddMainHTML.classList.remove(`hidden`);
     buttonSubmitForm.classList.remove('hidden');
@@ -51,27 +52,20 @@ function dropDownList() {
     searchEnter.value="";
   }
   function render() {
-    let realProducts = JSON.parse(localStorage.getItem(DISCOUNT)) || [];
+    let discountList = JSON.parse(localStorage.getItem(DISCOUNT)) || [];
     // console.log(realProducts);
      //Khởi tạo id bằng 1, nếu mảng category có ptu thì lấy dữ liệu ptu cuối +1
      let id = 1;
      //ktra xem có ptu hay ko
-     if (realProducts.length>0){
-       id = realProducts[realProducts.length -1].id+1;
+     if (discountList.length>0){
+       id = discountList[discountList.length -1].id+1;
      }
-    //lọc theo category
-    if (categoryFilter !== "All") {
-      realProducts = realProducts.filter(
-        (product) => product.productType === categoryFilter
-      );
-      // console.log(realProducts);
-    }
     //lọc theo search (vdu search sam thi hien spham samsung)
-    realProducts = realProducts.filter((product) =>
-      product.name.toLowerCase().includes(textSearch)
+    discountList = discountList.filter((product) =>
+      product.codeDiscount.toLowerCase().includes(textSearch)
     );
-    renderPaginations(realProducts);
-    renderProducts(realProducts);
+    renderPaginations(discountList);
+    renderProducts(discountList);
   }
   render();
   
@@ -86,13 +80,14 @@ function dropDownList() {
     for (let i = start; i < end; i++) {
       stringHTML += `
                   <tr>
-                      <td>${products[i].id}</td>
-                      <td>${products[i].name}</td>
-                      <td>${products[i].status ? "Available" : "Disable"}</td>
+                      <td>${products[i].idDiscount}</td>
+                      <td>${products[i].codeDiscount}</td>
+                      <td>${products[i].valueDiscount}</td>
+                      <td>${products[i].statusDiscount ? "Disable" : "Available"}</td>
                       <td>
-                          <button onClick="initUpdate('${products[i].id}')">Edit</button>
+                          <button onClick="initUpdate('${products[i].idDiscount}')">Edit</button>
                           <button onClick="changeStatus(${i})">${
-        products[i].status ? "Disable" : "Available"
+        products[i].statusDiscount ? "Available" : "Disable"
       }</button>
                       </td>
                   </tr>
@@ -194,8 +189,8 @@ function dropDownList() {
         render();
   
         swalWithBootstrapButtons.fire({
-          title: "Deleted!",
-          text: "Your file has been deleted.",
+          title: "Disable!",
+          text: "Your file has been disable.",
           icon: "success"
         });
       } else if (
@@ -220,6 +215,8 @@ function dropDownList() {
     for (let [name, value] of formData.entries()) {
       values[name] = value;
     }
+    values.valueDiscount = +values.valueDiscount;
+    
     // values.price = +values.price;
     // values.quantity = +values.quantity;
   
@@ -233,9 +230,9 @@ function dropDownList() {
       const products = JSON.parse(localStorage.getItem(DISCOUNT)) || [];
       let id = 1;
       if (products.length > 0) {
-        id = products[products.length - 1].id + 1;
+        id = products[products.length - 1].idDiscount + 1;
       }
-      values.id = id;
+      values.idDiscount = id;
       values.status = true;
       products.push(values);
       localStorage.setItem(DISCOUNT, JSON.stringify(products));
@@ -292,7 +289,8 @@ function dropDownList() {
   
     // prdId.value = realProducts[index].id;
 
-    DsCode.value = realProducts[index].name;
+    DsCode.value = realProducts[index].codeDiscount;
+    DsValue.value = realProducts[index].valueDiscount;
 
     // imageProductHTML.classList.remove('hidden');
     formAddMainHTML.classList.remove(`hidden`);
@@ -314,27 +312,30 @@ function dropDownList() {
   
   function getIndexById(id){
     let realProducts = JSON.parse(localStorage.getItem(DISCOUNT));
-    return realProducts.findIndex(product=> product.id ==id);
+    return realProducts.findIndex(product=> product.idDiscount ==id);
   }
   function getDataForm(){
     // console.log(imgProducthiddenHTML.src);
     return {
       // id: prdId.value,
-      name: DsCode.value,
+      codeDiscount: DsCode.value,
+      valueDiscount: +DsValue.value
     };
   }
   function clearForm(){
     DsCode.value="";
+    DsValue.value="";
   }
   function updateProduct(e){
     let realProducts = JSON.parse(localStorage.getItem(DISCOUNT));
     const product = getDataForm();
 
 
-    let indexUpdate = realProducts.findIndex(item=>item.id ==idUpdate);
+    let indexUpdate = realProducts.findIndex(item=>item.idDiscount ==idUpdate);
 
   
-    realProducts[indexUpdate].name = product.name;
+    realProducts[indexUpdate].codeDiscount = product.codeDiscount;
+    realProducts[indexUpdate].valueDiscount = product.valueDiscount;
 
     localStorage.setItem(DISCOUNT, JSON.stringify(realProducts))
     render();

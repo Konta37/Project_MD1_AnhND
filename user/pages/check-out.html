@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Konta</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Questrial&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/check-out.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <!-- ================ icon web================= -->
+    <meta name="theme-color" content="#f01737" />
+  </head>
+  <body>
+    <main>
+      <div class="Page-Content">
+        <div class="main">
+          <div class="header-name">KONTA</div>
+          <div class="nav-bar">
+            <a href="./cart.html">Cart</a>
+            <a><ion-icon name="chevron-forward-outline"></ion-icon></a>
+            <a>Information</a>
+            <a><ion-icon name="chevron-forward-outline"></ion-icon></a>
+            <a>Shipping</a>
+            <a><ion-icon name="chevron-forward-outline"></ion-icon></a>
+            <a>Payment</a>
+          </div>
+          <div class="main_content" id="formSection">
+            <!-- <form onsubmit="submitForm()">
+              <div class="section-contact-information">
+                <div class="section-header">
+                  <h2>Contact</h2>
+                </div>
+                <div class="section-content">
+                  <div class="logged-in-customer">
+                    <div class="customer-avatar">
+                        <div class="customer-avatar-icon"></div>
+                    </div>
+                    <div class="customer-information_paragraph">
+                      <span>Nguyen Anh</span>
+                      <span>ducanh@gmail.com</span>
+                      <br>
+                      <a href="">Log out</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="section--shipping-address">
+                <div class="section-header">
+                    <h2>Delivery method</h2>
+                </div>
+                <div class="section-content">
+                    <div class="content-box">
+                        <div class="content-box__row">
+                            <div class="radio-wrapper">
+                                <input type="radio" name="checkoutDelivery" value="delivery-shipping" checked="checked">
+                                <box-icon type='solid' name='truck'></box-icon>
+                                <span>Ship to you</span>
+                            </div>
+                        </div>
+                        <div class="content-box__row">
+                            <div class="radio-wrapper">
+                                <input type="radio" name="checkoutDelivery" value="delivery-pickup">
+                                <box-icon name='store-alt'></box-icon>
+                                <span>Store pick up(Free Shipping - Prepaid only)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dropdown-address">
+                        <div class="section-header">
+                            <h2>Shipping address</h2>
+                        </div>
+                        <div class="section__content">
+                            <div class="field__input">
+                                <label for="">Saved addresses</label>
+                                <select name="saved-address" id="" class="field_input_child">
+                                    <option value="" selected>Choose your saved addresses</option>
+                                </select>
+                            </div>
+                            <div class="field__input field_name">
+                                <label for="">Name *</label>
+                                <input type="text" name="name" id="" class="field_input_child">
+                            </div>
+                            <div class="field__input">
+                                <input type="text" name="lastname" id="" placeholder="House or Unit Number / Street Name"  class="field_input_child">
+                            </div>
+                            <div class="field__input">
+                                <input type="text" name="lastname" id="" placeholder="House or Unit Number / Street Name"  class="field_input_child">
+                            </div>
+                            <div class="field__input">
+                                <select name="country" id="" class="field_input_child">
+                                    <option value="VN" selected>Viet Nam</option>
+                                    <option value="EN">England</option>
+                                    <option value="US">USA</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+              <div class="section__footer">
+                <button class="section-btn">
+                    <a href="./cart.html">Return to cart</a>
+                </button>
+                <button class="section-btn btn-submit" type="submit">Submit</button>
+              </div>
+            </form> -->
+          </div>
+        </div>
+        <div class="sidebar__content">
+            <table id="table-content">
+
+            </table>
+            <hr>
+            <div class="code-discount">
+                <input type="text" placeholder="Discount code" id="discount-input" value="">
+                <button type="button" onclick="checkDiscount()">Apply</button>
+            </div>
+            <div class="cal-with-discoutn">
+                <table id="tableDiscount">
+                    
+                </table>
+            </div>
+        </div>
+      </div>
+    </main>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="../js/check-out.js"></script>
+  </body>
+</html>

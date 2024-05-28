@@ -1,0 +1,226 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", monospace;
+}
+body {
+  font-weight: 400;
+}
+div {
+  display: block;
+}
+body,
+html {
+  background-color: #ffffff;
+  color: #000000;
+}
+body,
+button,
+input,
+p,
+select,
+textarea {
+  font-family: var(--typeBasePrimary), var(--typeBaseFallback);
+  font-weight: var(--typeBaseWeight);
+  letter-spacing: var(--typeBaseSpacing);
+  line-height: var(--typeBaseLineHeight);
+  font-size: var(--typeBaseSize);
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeSpeed;
+}
+input,
+select,
+textarea {
+  border: 1px solid;
+  border-color: #e8e8e1;
+  border-color: #e8e8e1;
+  max-width: 100%;
+  padding: 8px 10px;
+  border-radius: 0;
+}
+ul {
+  display: block;
+  list-style-type: disc;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+  unicode-bidi: isolate;
+}
+ol,
+ul {
+  margin: 0 0 20px 40px;
+  padding: 0;
+}
+/* =========================================== */
+.Page-Content{
+    padding: 80px;
+    gap: 16px;
+    display: grid;
+    grid-template-columns: auto auto;
+}
+.section-header h2{
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 24px;
+    margin-top: 8px;
+}
+.header-name{
+    font-size: var(--typeHeaderSize);
+    font-weight: var(--typeHeaderWeight);
+    letter-spacing: 0.75em;
+    color: #ff0202;
+}
+.nav-bar{
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+.nav-bar a{
+    text-decoration: none;
+}
+.main_content{
+    margin-top: 32px ;
+}
+.logged-in-customer{
+    display: flex;
+    gap: 8px;
+}
+.customer-avatar{
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border-radius: 20%;
+    background-color: antiquewhite;
+}
+.customer-avatar-icon{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: cadetblue;
+}
+.content-box__row{
+    display: flex;
+    border: 1px solid #000000;
+    margin-bottom: 16px;
+}
+.radio-wrapper{
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    width: 100%;
+    padding: 16px;
+}
+.section__content{
+    width: 100%;
+}
+.field__input{
+    position: relative;
+    width: 100%;
+    margin-bottom: 16px;
+}
+.field__input label{
+    position: absolute;
+    top: 3px;
+    left: 5px;
+    opacity: 0.5;
+}
+.field_input_child{
+    width: 100%;
+    padding-top: 24px;
+    border: 1px solid #686767;
+}
+.section__footer{
+    margin-top: 32px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.section-btn{
+    width: 200px;
+    padding: 16px 0;
+    background-color: #ffffff;
+    font-weight: 700;
+    letter-spacing: 3px;
+    cursor: pointer;
+}
+.section-btn a{
+    text-decoration: none;
+    color: #000000;
+}
+.btn-submit{
+    background-color: #ff0202;
+    color: #ffffff;
+}
+table,tbody{
+    width: 100%;
+}
+.product{
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 16px;
+}
+.product-thumbnail{
+    position: relative;
+    width: 70px;
+    height: 70px;
+}
+.product-thumbnail__wrapper, .product-thumbnail__wrapper img{
+    width: 100%;
+    height: 100%;
+}
+.product-thumbnail__wrapper img{
+    object-fit: cover;
+}
+.product__description{
+    display: grid;
+    grid-row: inherit;
+    text-align: left;
+    height: 100%;
+}
+.product-thumbnail__quantity{
+    position: absolute;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    top: 0;
+    right: 0;
+    background-color: #ff0202;
+    color: #ffffff;
+    font-weight: 700;
+}
+.code-discount{
+    display: grid;
+    grid-template-columns: 75% auto;
+    gap: 24px;
+}
+.cal-with-discoutn tr td{
+    text-align: center;
+}
+.total-tr{
+    font-weight: 700;
+}
+:root {
+    --typeHeaderPrimary: Montserrat;
+    --typeHeaderFallback: sans-serif;
+    --typeHeaderSize: 35px;
+    --typeHeaderWeight: 700;
+    --typeHeaderLineHeight: 1.2;
+    --typeHeaderSpacing: 0em;
+    --typeBasePrimary: Questrial;
+    --typeBaseFallback: sans-serif;
+    --typeBaseSize: 14px;
+    --typeBaseWeight: 400;
+    --typeBaseLineHeight: 1.6;
+    --typeBaseSpacing: 0.025em;
+    --iconWeight: 3px;
+    --iconLinecaps: miter;
+  }

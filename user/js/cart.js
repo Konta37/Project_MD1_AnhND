@@ -121,12 +121,13 @@ function deleteCartID(id) {
 function renderCartFooter(totals) {
   let stringHTML = "";
   let discount = 0.1; //10% discount
-  let tolalsAfter = total - totals * discount;
+  let discountAfter = 0;
   let minimumTotal = 800000; //minimun total is 800.000đ
   let minimumPriceBonus = 100000; //Total will decrease when have enough minimumtotal
   if (totals > minimumTotal) {
-    tolalsAfter = tolalsAfter - minimumPriceBonus;
+    discountAfter = totals - totals * discount;
   } else {
+    discountAfter =0;
   }
   //caluclator price
   stringHTML = `
@@ -140,13 +141,13 @@ function renderCartFooter(totals) {
                         <span class="money">${formatMoney(totals)}</span>
                     </span>
                     <span class="csapps-cart-total">
-                        <span class="money">${formatMoney(tolalsAfter)}</span>
+                        <span class="money">${formatMoney(discountAfter)}</span>
                     </span>
                 </div>
                 <div class="csapp-price-saving aiodmb_saving">
                     <b>You Save:</b>
                     <span class="aiod_save_price money">${formatMoney(
-                      totals - tolalsAfter
+                      totals - discountAfter
                     )}</span>
                 </div>
                 <div class="csapp-discount-list">
@@ -166,7 +167,7 @@ function renderCartFooter(totals) {
                         <div class="discount_price">
                             <div class="csapp_money">
                                 <span class="money aiod_price_label"> - ${formatMoney(
-                                  minimumPriceBonus
+                                  totals - discountAfter
                                 )}</span>
                             </div>
                         </div>
@@ -178,7 +179,7 @@ function renderCartFooter(totals) {
             <small class="text-left small margin-top-15 checkout-reminders">
                 Shipping and discount codes calculated at checkout
             </small>
-            <button type="submit" name="checkout" class="btn btn--no-animate cart__checkout aiod_cart_loaded">
+            <button type="button" onclick="ChangeToCheckout()" name="checkout" class="btn btn--no-animate cart__checkout aiod_cart_loaded">
                 Check out
             </button>
             <small class="text-left small margin-top-5 rte">
@@ -260,4 +261,7 @@ function changeToProductInfor(id) {
   productObject.productRealName = realProducts[productsIndex].productRealName;
   localStorage.setItem("product_infor", JSON.stringify(productObject));
   window.location.href = "./product.html";
+}
+function ChangeToCheckout(){
+  window.location.href="./check-out.html"
 }

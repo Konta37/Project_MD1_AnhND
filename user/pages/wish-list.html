@@ -16,7 +16,7 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Questrial&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../css/all-product.css" />
+    <link rel="stylesheet" href="../css/wish-list.css" />
 
     <link
       rel="stylesheet"
@@ -74,18 +74,8 @@
                   </div>
                 </div>
                 <ul class="moblie-gender_nav">
-                  <li
-                    class="mobile-gender__item mobile-nav man active"
-                    onclick="activeBody()"
-                  >
-                    Men
-                  </li>
-                  <li
-                    class="mobile-gender__item mobile-nav woman"
-                    onclick="activeBody()"
-                  >
-                    Woman
-                  </li>
+                  <li class="mobile-gender__item mobile-nav man active">Men</li>
+                  <li class="mobile-gender__item mobile-nav woman">Woman</li>
                 </ul>
                 <div class="drawer__scrollable">
                   <div class="accountmenu__container">
@@ -94,18 +84,8 @@
                       in-store!
                     </p>
                     <div class="accountmenu__buttons">
-                      <button
-                        class="accountmenu"
-                        onclick="window.location.href = `./user/pages/register.html`"
-                      >
-                        REGISTER NOW
-                      </button>
-                      <button
-                        class="accountmenu"
-                        onclick="window.location.href = `./login.html`"
-                      >
-                        LOG IN
-                      </button>
+                      <button class="accountmenu">REGISTER NOW</button>
+                      <button class="accountmenu">LOG IN</button>
                     </div>
                     <hr />
                   </div>
@@ -786,13 +766,13 @@
                       >
                     </li>
                     <li class="mobile-nav__item">
-                      <a href="#" class="mobile-nav__link">ALL ITEMS</a>
+                      <a href="./all-product.html" class="mobile-nav__link">ALL ITEMS</a>
                     </li>
                     <li class="mobile-nav__item">
                       <a href="#" class="mobile-nav__link">BULK ORDER</a>
                     </li>
                     <li class="mobile-nav__item">
-                      <a href="#" class="mobile-nav__link">LOG IN</a>
+                      <a href="../../login.html" class="mobile-nav__link">LOG IN</a>
                     </li>
                   </ul>
                   <!-- <ul class="woman"></ul> -->
@@ -813,24 +793,16 @@
                     <li class="mobile-additional__item">
                       <a href="#" class="mobile-nav__item">KONTA ACHIVE</a>
                     </li>
-                    <li class="mobile-additional__item">
-                      <a
-                        href="./admin/admin.html"
-                        class="mobile-nav__item"
-                        style="color: #f01737; font-weight: 800"
-                        >Page Admin</a
-                      >
-                    </li>
                   </ul>
                 </div>
               </div>
             </div>
             <div class="name-shop">
-              <a href="#"><b>KONTA</b></a>
+              <a href="../../index.html"><b>KONTA</b></a>
             </div>
             <div class="header-funtion">
               <div class="site-nav__link">
-                <a id="profile" onclick="profileChange()"
+                <a href="../../login.html"
                   ><ion-icon name="person-circle-outline"></ion-icon
                 ></a>
                 <a href="#"><ion-icon name="heart-outline"></ion-icon></a>
@@ -839,6 +811,7 @@
               </div>
             </div>
           </div>
+          <hr />
         </div>
         <div class="bottom-nav-container medium-up--hide">
           <div class="grid bottom-nav-inner">
@@ -850,10 +823,7 @@
               </div>
             </div>
             <div class="bottom-list one-quarter">
-              <a
-                class="site-nav__link site-nav__link--icon"
-                onclick="profileChange()"
-              >
+              <a href="#" class="site-nav__link site-nav__link--icon">
                 <ion-icon name="person-circle-outline"></ion-icon>
               </a>
             </div>
@@ -872,7 +842,7 @@
             <div class="bottom-list one-quarter">
               <span class="cart-link">
                 <a
-                  href="./user/pages/cart.html"
+                  href="#"
                   class="site-nav__link site-nav__link--icon site-nav__link site-nav__link--icon"
                 >
                   <ion-icon name="bag-handle-outline"></ion-icon>
@@ -889,146 +859,39 @@
     <!-- End header -->
     <!-- begin section -->
     <main>
-      <div class="main-content" id="MainContent">
-        <div class="page-width page-content">
-          <nav class="breadcrumb">
-            <a href="../../index.html">Home</a>
-            <span class="breadcrumb__divider" aria-hidden="true">/</span>
-            <a href="#">Collections</a>
-            <span class="breadcrumb__divider" aria-hidden="true">/</span>
-            <a href="#">All Items</a>
-          </nav>
-          <!-- sidebar Filter -->
-          <div id="CollectionSidebar">
-            <div id="FillterDrawer" class="drawer drawer--left drawer--is-open">
-              <div class="draw__content">
-                <div class="drawer__fixed-header">
-                  <div class="drawer__header appear-animation appear-delay-1">
-                    <div class="drawer__title">Filter</div>
-                    <div class="drawer__close">
-                      <button
-                        type="button"
-                        class="drawer__close-button"
-                        onclick="closeFilterSide()"
-                      >
-                        <ion-icon name="close-outline"></ion-icon>
-                      </button>
+        <div class="mainContent">
+            <div class="wrapper">
+                <div class="fancy_title">
+                    <h3>Nguyen's WishList</h3>
+                    <p>
+                      <a href="./profile.html">My account</a>
+                      <a href="../../login.html">Login</a>
+                    </p>
+                </div>
+                <div class="wrapper_grid">
+                  <div class="grid_content">
+                    <div class="list-header">
+                      <form class="input-group search__bar">
+                        <ion-icon name="search-outline" class="icon-search"></ion-icon>
+                        <input type="search" name="" value="" placeholder="Search product" class="input-group-field">
+                      </form>
+                      <div class="wish-list-view">
+                        <div class="change__view icon-wishlist-list-view">
+                          <ion-icon name="list-outline"></ion-icon>
+                        </div>
+                        <div class="change__view icon-wishlist-grid-view change__view-active">
+                          <ion-icon name="grid-outline"></ion-icon>
+                        </div>
+                      </div>
                     </div>
+                    <div class="list-action"></div>
+                    <div class="wishlish-list-view"></div>
                   </div>
+                  <!-- div slide for similar product -->
+                  <div class="swiper"></div>
                 </div>
-                <div class="drawer__scrollable appear-animation appear-delay-2">
-                  <form action="" class="filter-form">
-                    <div class="collection-sidebar__group--1">
-                      <div class="card">
-                        <h4>Price Range Slider</h4>
-
-                        <div class="price-content">
-                          <div>
-                            <label>Min</label>
-                            <p id="min-value">50</p>
-                          </div>
-
-                          <div>
-                            <label>Max</label>
-                            <p id="max-value">500</p>
-                          </div>
-                        </div>
-
-                        <div class="range-slider">
-                          <div class="range-fill"></div>
-
-                          <input
-                            type="range"
-                            class="min-price input-rage"
-                            value="0"
-                            min="0"
-                            max="1000000"
-                            step="10"
-                            id="min-price-value"
-                          />
-                          <input
-                            type="range"
-                            class="max-price input-rage"
-                            value="1000000"
-                            min="10"
-                            max="1000000"
-                            step="10"
-                            id="max-price-value"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div class="collection-sidebar__group--1">
-                      <div class="card card-search">
-                        <div class="search_input_wrap">
-                          <input
-                            type="search"
-                            name=""
-                            id="search"
-                            placeholder="Search here..."
-                          />
-                          <p class="search-clear" onclick="clearSearch()">CLEAR</p>
-                        </div>
-                        <button onclick="changeTextSearch(event)" class="btn btn-search">Search</button>                        
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </div>
             </div>
-          </div>
-          <header class="section-header">
-            <h1 class="section-header__title collection-title">All Items</h1>
-          </header>
-          <div class="collection-filter">
-            <div class="grid grid--uniform small--grid--flush">
-              <div class="grid__item small--one-half medium-up--one-half">
-                <button
-                  id="FilterDrawerTrigger"
-                  type="button"
-                  class="collection-filter__item--drawer js-drawer-open-collection-filters btn btn--tertiary"
-                >
-                  <box-icon name="filter"></box-icon>
-                  <p>Filter</p>
-                </button>
-              </div>
-              <div
-                class="grid__item small--one-half medium-up--one-half text-right collection-filter__item--sort"
-              >
-                <!-- <label for="SortBy" class="hidden-label">Sort</label> -->
-                <select name="SortBy" id="SortBy" onchange="changeCategory(event)">
-                  <option value="All" selected="selected">Everything</option>
-                  <!-- <option value="best-selling">Best Selling</option> -->
-                  <option value="aToZ">Alphabetically, A-Z</option>
-                  <option value="zToA">Alphabetically, Z-A</option>
-                  <option value="price-ascending">Price, low to high</option>
-                  <option value="price-descending">Price, high to low</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="CollectionTopResult">
-            <div class="CollectionTopContent">
-              <div
-                id="product-item"
-                class="grid grid--uniform small--grid--flush"
-              ></div>
-              <div id="pagination" class="pagination">
-                <div class="pagination-content">
-                  <button onclick="changePage(-1)" class="btn">
-                    <ion-icon name="arrow-back-outline"></ion-icon>
-                  </button>
-                  <p id="page-list" class="page"></p>
-                  <button onclick="changePage(1)" class="btn">
-                    <ion-icon name="arrow-forward-outline"></ion-icon>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="space-page"></div>
         </div>
-      </div>
     </main>
 
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
@@ -1041,6 +904,6 @@
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="../js/all-product.js"></script>
+    <script src="../js/wish-list.js"></script>
   </body>
 </html>
