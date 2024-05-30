@@ -204,15 +204,38 @@ function renderDiscountSpace(dsLists, totals) {
         Discount = 0;
       }
       FinalTotals = totals + 100000 - Discount;
-      //run discount
-      stringHTML = `
+      if(dsLists.status == true){
+        //run discount
+          stringHTML = `
+          <tr>
+              <td>Subtotal</td>
+              <td>${formatMoney(totals)}</td>
+          </tr>
+          <tr>
+              <td>Discount</td>
+              <td>${dsLists[discountIndex].valueDiscount}%</td>
+          </tr>
+          <tr>
+              <td>Shipping</td>
+              <td>100k</td> 
+              <!-- shipping cal with country -->
+          </tr>
+          <tr class="total-tr">
+              <td>Total</td>
+              <td>${formatMoney(FinalTotals)}</td>
+          </tr>
+      `;
+      }
+      else{
+            //run discount
+            stringHTML = `
             <tr>
                 <td>Subtotal</td>
                 <td>${formatMoney(totals)}</td>
             </tr>
             <tr>
                 <td>Discount</td>
-                <td>${dsLists[discountIndex].valueDiscount}%</td>
+                <td style="color: red;">None</td>
             </tr>
             <tr>
                 <td>Shipping</td>
@@ -224,6 +247,7 @@ function renderDiscountSpace(dsLists, totals) {
                 <td>${formatMoney(FinalTotals)}</td>
             </tr>
         `;
+      }
     } else {
       FinalTotals = totals + 100000;
       discountInputText = null;

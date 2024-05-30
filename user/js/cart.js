@@ -54,6 +54,8 @@ function render() {
   if (carts.length < 1) {
     stringHTML = "There are nothing here";
     cartWrapper.innerHTML = stringHTML;
+    renderCartFooter(0);
+    console.log(total);
   } else {
     // let productIndex = realProducts.findIndex(item=>item.id == carts)
     for (let i in carts) {
@@ -104,8 +106,11 @@ function render() {
     `;
       total = total + priceTotal;
     }
+   
+
     notificationCart.innerHTML=`${calNumberProduct(carts)}`;
     cartWrapper.innerHTML = stringHTML;
+    console.log(total);
     renderCartFooter(total);
   }
 }
@@ -119,6 +124,7 @@ function deleteCartID(id) {
   render();
 }
 function renderCartFooter(totals) {
+  
   let stringHTML = "";
   let discount = 0.1; //10% discount
   let discountAfter = 0;
@@ -129,6 +135,7 @@ function renderCartFooter(totals) {
   } else {
     discountAfter =0;
   }
+  console.log(totals);
   //caluclator price
   stringHTML = `
   <div class="gird">
@@ -246,6 +253,7 @@ function deleteAll(){
         icon: "success"
       });
       localStorage.removeItem("cart");
+      total=0;
       render();
     }
   });
